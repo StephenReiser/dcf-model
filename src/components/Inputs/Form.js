@@ -14,6 +14,7 @@ function Form () {
         // search.setSearchStock('')
 
         fetch(`https://financialmodelingprep.com/api/v3/financials/income-statement/AAPL`).then(res => {console.log(res)})
+        
       }
 
     return(
