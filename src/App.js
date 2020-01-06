@@ -32,6 +32,11 @@ function App() {
   const [eMultiplier, setEMultiplier ] = useState(10)
   const [discRate, setDiscRate ] = useState(.03)
   const [shares, setShares ] = useState(null)
+  const [ebitdaAdj, setEbitdaAdj] = useState(0)
+  const [depAmmAdj, setDepAmmAdj] = useState(0)
+  const [nwcAdj, setNwcAdj] = useState(0)
+  const [capExAdj, setCapExAdj] = useState(0)
+  
 
   // setting this to null will allow us to not have the undefined issue on render - so we can conditionally render data
 
@@ -40,7 +45,7 @@ function App() {
   
   return (
 
-    <StockContext.Provider value ={{searchStock ,setSearchStock, myStock, setMyStock, incomeStatement, setIncomeStatement, balanceSheet, setBalanceSheet, ratios, setRatios, cashFlow, setCashFlow, fullData, setFullData,fiveYearProjection, setFiveYearProjection, growth, setGrowth, ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, tax, setTax, eMultiplier, setEMultiplier, discRate, setDiscRate, shares, setShares}}>
+    <StockContext.Provider value ={{searchStock ,setSearchStock, myStock, setMyStock, incomeStatement, setIncomeStatement, balanceSheet, setBalanceSheet, ratios, setRatios, cashFlow, setCashFlow, fullData, setFullData,fiveYearProjection, setFiveYearProjection, growth, setGrowth, ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, tax, setTax, eMultiplier, setEMultiplier, discRate, setDiscRate, shares, setShares, ebitdaAdj, setEbitdaAdj, depAmmAdj, setDepAmmAdj, nwcAdj, setNwcAdj, capExAdj, setCapExAdj}}>
       <div className="container">
         
         

@@ -8,7 +8,7 @@ import '../../css/table.css'
 
 function FiveYear () {
 
-    const {fullData, fiveYearProjection, setFiveYearProjection, growth, ebitda, depAmm, capEx, nwc, tax} = useStockContext()
+    const {fullData, fiveYearProjection, setFiveYearProjection, growth, ebitda, depAmm, capEx, nwc, tax, ebitdaAdj, depAmmAdj, nwcAdj, capExAdj} = useStockContext()
 
     function baseLine(fullDataState) {
         let myData = [[{}],[],[],[],[],[]]
@@ -45,18 +45,19 @@ function FiveYear () {
 
         let startingPoint = {}
         startingPoint.date = baselineData[0].date
-        startingPoint.ebitda = baselineData[0].ebitda
-        startingPoint.ebit = baselineData[0].ebit
+        startingPoint.ebitda = baselineData[0].ebitda + Number(ebitdaAdj)
+        // calculate ebit here
         startingPoint.tax = growth.tax
         startingPoint.ebi = startingPoint.ebit * startingPoint.tax
-        startingPoint.depAmm = baselineData[0].depAmm
-        startingPoint.nwc = baselineData[0].nwc - 32000
+        startingPoint.depAmm = baselineData[0].depAmm + Number(depAmmAdj)
+        startingPoint.ebit = startingPoint.ebitda - startingPoint.depAmm
+        startingPoint.nwc = baselineData[0].nwc + Number(nwcAdj)
 
         // I HARD CODED -32000 here to adjust APPLE NWC to tie to my test - not relavent once these are set as forms
 
         // I think i should have a manual adjustment that will impact the starting point
 
-        startingPoint.capEx = baselineData[0].capEx
+        startingPoint.capEx = baselineData[0].capEx + Number(capExAdj)
         startingPoint.UFCF = startingPoint.ebi + startingPoint.depAmm + startingPoint.nwc + startingPoint.capEx
         
 
@@ -89,7 +90,7 @@ function FiveYear () {
 
     useEffect(() => {
         baseLine(fullData)
-    }, [fullData, growth, ebitda, depAmm, capEx, nwc, tax])
+    }, [fullData, growth, ebitda, depAmm, capEx, nwc, tax, ebitdaAdj, depAmmAdj, nwcAdj, capExAdj])
 
     // by setting it like this - anytime fullData or growth update, this resets
 

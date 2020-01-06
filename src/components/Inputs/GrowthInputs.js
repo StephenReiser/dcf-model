@@ -6,7 +6,7 @@ import '../../css/firstTable.css'
 
 function GrowthInputs () {
 
-    const { ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, setGrowth, fullData, tax, setTax, growth, eMultiplier, setEMultiplier } = useStockContext()
+    const { ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, setGrowth, fullData, tax, setTax, growth, eMultiplier, setEMultiplier, ebitdaAdj, setEbitdaAdj, depAmmAdj, setDepAmmAdj, nwcAdj, setNwcAdj, capExAdj, setCapExAdj } = useStockContext()
 
     const setNewGrowths = (e) => {
         e.preventDefault()
@@ -50,69 +50,112 @@ function GrowthInputs () {
         <div className = 'row'>
             <div className = 'col s3'>Name</div>
             <div className = 'col s2'>3yr Avg</div>
+            <div className = 'col s1'>Manual Adj</div>
             <div className = 'col s1'>Custom</div>
-            <div className = 'col s7'></div>
+            <div className = 'col s6'></div>
 
         </div>
         <div className = 'row'>
           <div className = 'col s3'>EBITDA</div>
           <div className = 'col s2'>{growth.ebitdaGrowth}</div>
+          <div className = 'col s1'>
+          <input 
+                type="text" 
+                value = {ebitdaAdj}
+                onChange = {e => setEbitdaAdj(e.target.value)}
+            />
+            </div>
+          <div className = 'col s1'>
           <input 
                 type="text" 
                 value = {ebitda}
                 onChange = {e => setEbitda(e.target.value)}
             />
-          <div className = 'col s7'></div>
+            </div>
+          <div className = 'col s5'></div>
         </div>
         <div className = 'row'>
           <div className = 'col s3'>D&A</div>
           <div className = 'col s2'>{growth.depAmmGrowth}</div>
+          <div className = 'col s1'>
+          <input 
+                type="text" 
+                value = {depAmmAdj}
+                onChange = {e => setDepAmmAdj(e.target.value)}
+            />
+            </div>
+          <div className = 'col s1'>
           <input 
                 type="text" 
                 value = {depAmm}
                 onChange = {e => setDepAmm(e.target.value)}
             />
-          <div className = 'col s7'></div>
+            </div>
+          <div className = 'col s5'></div>
         </div>
         <div className = 'row'>
           <div className = 'col s3'>CapEx</div>
           <div className = 'col s2'>{growth.capExGrowth}</div>
+          <div className='col s1'>
+          <input 
+                type="text" 
+                value = {capExAdj}
+                onChange = {e => setCapExAdj(e.target.value)}
+            />
+            </div>
+          <div className='col s1'>
           <input 
                 type="text" 
                 value = {capEx}
                 onChange = {e => setCapEx(e.target.value)}
             />
-          <div className = 'col s7'></div>
+            </div>
+          <div className = 'col s5'></div>
         </div>
         <div className = 'row'>
           <div className = 'col s3'>NWC</div>
           <div className = 'col s2'>{growth.nwcGrowth}</div>
+          <div className='col s1'>
+          <input 
+                type="text" 
+                value = {nwcAdj}
+                onChange = {e => setNwcAdj(e.target.value)}
+            />
+            </div>
+          <div className='col s1'>
           <input 
                 type="text" 
                 value = {nwc}
                 onChange = {e => setNwc(e.target.value)}
             />
-          <div className = 'col s7'></div>
+            </div>
+          <div className = 'col s5'></div>
         </div>
         <div className = 'row'>
           <div className = 'col s3'>Tax</div>
           <div className = 'col s2'>{growth.tax}</div>
+          <div className = 'col s1'></div>
+          <div className = 'col s1'>
           <input 
                 type="text" 
                 value = {tax}
                 onChange = {e => setTax(e.target.value)}
             />
-          <div className = 'col s7'></div>
+            </div>
+          <div className = 'col s5'></div>
         </div>
         <div className = 'row'>
           <div className = 'col s3'>Terminal Earnings Multiplier</div>
           <div className = 'col s2'>{eMultiplier}</div>
+          <div className = 'col s1'></div>
+          <div className = 'col s1'>
           <input 
                 type="text" 
                 value = {eMultiplier}
                 onChange = {e => setEMultiplier(e.target.value)}
             />
-          <div className = 'col s7'></div>
+            </div>
+          <div className = 'col s5'></div>
         </div>
         <label>
              <input type='submit' value='submit' />

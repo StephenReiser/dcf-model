@@ -17,7 +17,7 @@ function Valuation () {
         
 
         // need to subtract netDebt from terminalDCF then this is good to go!
-        
+
     } else {
         myDCF = 0
     }
@@ -34,21 +34,21 @@ function Valuation () {
     return (
         <>
         <div className = 'row'>
-            My DCF: {myDCF.toLocaleString()}
+            My DCF: {Number(myDCF.toFixed(0)).toLocaleString()}
             
         </div>
-        <div className='row'>
-            Terminal DCF: {terminalDCF.toLocaleString()}
+        <div className='row'    >
+            Terminal DCF: {Number(terminalDCF.toFixed(0)).toLocaleString()}
             
         </div>
         <div className = 'row'>
-            Total Value: {(myDCF + terminalDCF).toLocaleString()}
+            Total Value: {Number((myDCF + terminalDCF).toFixed(0)).toLocaleString()}
         </div>
         <div className = 'row'>
-            Shares Outstanding: {shares ? (shares/1000000).toLocaleString() : 0}
+            Shares Outstanding: {shares ? Number((shares/1000000).toFixed(0)).toLocaleString() : 0}
         </div>
         <div className = 'row'>
-            Equity Value: { ((myDCF + terminalDCF) / (shares/1000000)).toLocaleString()}
+            Equity Value: { Number(((myDCF + terminalDCF) / (shares/1000000)).toFixed(2)).toLocaleString()}
         </div>
         </>
 

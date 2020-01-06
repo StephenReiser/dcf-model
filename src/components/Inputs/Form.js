@@ -31,21 +31,23 @@ function Form () {
 
         //    this currently doesn't do anything but its retreiving the past 5 year DCF that is calculated and pushing them to an object
 
-            let calculatedDCF = [...res7.historicalDCF]
+            // let calculatedDCF = [...res7.historicalDCF]
 
-            calculatedDCF.push(res6)
+            // calculatedDCF.push(res6)
 
-            let dcfObject = {}
+            // let dcfObject = {}
             
-            for (let i = 0; i < calculatedDCF.length; i++) {
-                const date = new Date(calculatedDCF[i].date).getFullYear()
+            // for (let i = 0; i < calculatedDCF.length; i++) {
+            //     const date = new Date(calculatedDCF[i].date).getFullYear()
 
-                dcfObject[date] = calculatedDCF[i].DCF
+            //     dcfObject[date] = calculatedDCF[i].DCF
 
-            }
+            // }
 
 
-            console.log(dcfObject)
+            // console.log(dcfObject)
+
+            // commented out for now - this is causing an error for new companies
 
             // end DCF object - currently not being set anywhere but I want to have it
 
@@ -76,6 +78,8 @@ function Form () {
 
 
             // should be beaking this up. but we can set baseline rates here
+
+            // this stuff will cause the site to crash on newer companies - so probably need to think about some useful logic there
 
             let ebitdaGrowth = Math.pow(((Number(data1.financials[0].EBITDA) / Number(data1.financials[3].EBITDA))  ), (1/3))   - 1
             let averageTax = (Number(data3.ratios[0].profitabilityIndicatorRatios.effectiveTaxRate) + Number(data3.ratios[1].profitabilityIndicatorRatios.effectiveTaxRate) + Number(data3.ratios[2].profitabilityIndicatorRatios.effectiveTaxRate) ) / 3
