@@ -1,20 +1,43 @@
 import {createContext, useContext} from 'react'
-import React, {useState, setState} from 'react'
+
 
 
 // const {myTest, setMyTest} = useState(0)
 export const StockContext = createContext({
-    myTest: 0,
-    setMyTest: () => {},
+    
     searchStock: 0,
     setSearchStock: () => {},
     myStock: 'AAPL',
-    setMyStock: () => {}
+    setMyStock: () => {},
+    incomeStatement: {},
+    setIncomeStatement: () => {},
+    balanceSheet: {},
+    setBalanceSheet: () => {},
+    ratios: {},
+    setRatios: () => {},
+    cashFlow: {},
+    setCashFlow: () => {},
+    fullData: {},
+    setFullData: () => {},
+    fiveYearProjection: {},
+    setFiveYearProjection: () => {},
+    growth: {},
+    setGrowth: () => {},
+    ebitda: {},
+    setEbitda: () => {},
+    depAmm: {},
+    setDepAmm: () => {},
+    nwc: {},
+    setNwc: () => {},
+    capEx: {},
+    setCapEx: () => {},
+    tax: {},
+    setTax: () => {}
     
 })
 
 
 export function useStockContext() {
-    const {myTest, setMyTest, searchStock, setSearchStock, myStock, setMyStock} = useContext(StockContext)
-    return {myTest, setMyTest, searchStock, setSearchStock, myStock, setMyStock}
+    const {searchStock, setSearchStock, myStock, setMyStock, incomeStatement, setIncomeStatement, balanceSheet, setBalanceSheet, ratios, setRatios, cashFlow, setCashFlow, fullData, setFullData,fiveYearProjection, setFiveYearProjection, growth, setGrowth,ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, tax, setTax} = useContext(StockContext)
+    return {searchStock, setSearchStock, myStock, setMyStock, incomeStatement, setIncomeStatement, balanceSheet, setBalanceSheet, ratios, setRatios, cashFlow, setCashFlow, fullData, setFullData,fiveYearProjection, setFiveYearProjection, growth, setGrowth,ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, tax, setTax}
 }

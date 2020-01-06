@@ -1,0 +1,18 @@
+
+
+
+/* So either do this?? */
+
+tr { display: block; float: left; }
+th, td { 
+    display: block;
+    padding: 10px;
+ }
+
+
+/* or this: The trick is to use display: inline-block; on the table rows and  white-space: nowrap; on the table body. */
+
+
+th, td {
+    color: red
+}
