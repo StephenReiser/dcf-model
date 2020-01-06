@@ -4,7 +4,7 @@ import BalanceSheet from '../FinStatement/BalanceSheet'
 
 function Form () {
 
-    const {searchStock, setSearchStock, setFullData, setGrowth} = useStockContext()
+    const {searchStock, setSearchStock, setFullData, setGrowth, setShares} = useStockContext()
    
 
 
@@ -20,9 +20,10 @@ function Form () {
             fetch(`https://financialmodelingprep.com/api/v3/financials/cash-flow-statement/${searchStock}`),
             fetch(`https://financialmodelingprep.com/api/v3/financial-statement-growth/${searchStock}`),
             fetch(`https://financialmodelingprep.com/api/v3/company/discounted-cash-flow/${searchStock}`),
-            fetch(`https://financialmodelingprep.com/api/v3/company/historical-discounted-cash-flow/${searchStock}`)
+            fetch(`https://financialmodelingprep.com/api/v3/company/historical-discounted-cash-flow/${searchStock}`),
+            fetch(`https://financialmodelingprep.com/api/v3/company/profile/${searchStock}`)
 
-        ]).then(([res1, res2, res3, res4, res5, res6, res7]) => Promise.all([res1.json(), res2.json(), res3.json(), res4.json(), res5.json(), res6.json(), res7.json()]) ).then(([data1, data2, data3, data4,res5, res6, res7]) => {
+        ]).then(([res1, res2, res3, res4, res5, res6, res7, res8]) => Promise.all([res1.json(), res2.json(), res3.json(), res4.json(), res5.json(), res6.json(), res7.json(), res8.json()]) ).then(([data1, data2, data3, data4,res5, res6, res7, res8]) => {
             // setIncomeStatement(data1);
             // setBalanceSheet(data2);
             // setRatios(data3);
@@ -108,6 +109,7 @@ function Form () {
                 nwc: nwcArray.slice(0,3).reverse()
              })
 
+            setShares(res8.profile.mktCap / res8.profile.price)
             // it might actually make sense to combine the data here and set one state for what I want
         
             

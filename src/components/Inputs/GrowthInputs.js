@@ -6,7 +6,7 @@ import '../../css/firstTable.css'
 
 function GrowthInputs () {
 
-    const { ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, setGrowth, fullData, tax, setTax, growth } = useStockContext()
+    const { ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, setGrowth, fullData, tax, setTax, growth, eMultiplier, setEMultiplier } = useStockContext()
 
     const setNewGrowths = (e) => {
         e.preventDefault()
@@ -101,6 +101,16 @@ function GrowthInputs () {
                 type="text" 
                 value = {tax}
                 onChange = {e => setTax(e.target.value)}
+            />
+          <div className = 'col s7'></div>
+        </div>
+        <div className = 'row'>
+          <div className = 'col s3'>Terminal Earnings Multiplier</div>
+          <div className = 'col s2'>{eMultiplier}</div>
+          <input 
+                type="text" 
+                value = {eMultiplier}
+                onChange = {e => setEMultiplier(e.target.value)}
             />
           <div className = 'col s7'></div>
         </div>
