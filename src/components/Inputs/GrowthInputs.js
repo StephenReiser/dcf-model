@@ -6,7 +6,7 @@ import '../../css/firstTable.css'
 
 function GrowthInputs () {
 
-    const { ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, setGrowth, fullData, tax, setTax, growth, eMultiplier, setEMultiplier, ebitdaAdj, setEbitdaAdj, depAmmAdj, setDepAmmAdj, nwcAdj, setNwcAdj, capExAdj, setCapExAdj } = useStockContext()
+    const { ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, setGrowth, fullData, tax, setTax, growth, eMultiplier, setEMultiplier, ebitdaAdj, setEbitdaAdj, depAmmAdj, setDepAmmAdj, nwcAdj, setNwcAdj, capExAdj, setCapExAdj, discRate, setDiscRate } = useStockContext()
 
     const setNewGrowths = (e) => {
         e.preventDefault()
@@ -153,6 +153,19 @@ function GrowthInputs () {
                 type="text" 
                 value = {eMultiplier}
                 onChange = {e => setEMultiplier(e.target.value)}
+            />
+            </div>
+          <div className = 'col s5'></div>
+        </div>
+        <div className = 'row'>
+          <div className = 'col s3'>Discount Rate</div>
+          <div className = 'col s2'>{discRate}</div>
+          <div className = 'col s1'></div>
+          <div className = 'col s1'>
+          <input 
+                type="number" 
+                value = {discRate}
+                onChange = {e => setDiscRate(e.target.value)}
             />
             </div>
           <div className = 'col s5'></div>

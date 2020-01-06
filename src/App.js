@@ -30,12 +30,13 @@ function App() {
   const [nwc, setNwc ] = useState(growth.capExGrowth)
   const [tax, setTax ] = useState(growth.tax)
   const [eMultiplier, setEMultiplier ] = useState(10)
-  const [discRate, setDiscRate ] = useState(.03)
+  const [discRate, setDiscRate ] = useState(3)
   const [shares, setShares ] = useState(null)
   const [ebitdaAdj, setEbitdaAdj] = useState(0)
   const [depAmmAdj, setDepAmmAdj] = useState(0)
   const [nwcAdj, setNwcAdj] = useState(0)
   const [capExAdj, setCapExAdj] = useState(0)
+  
   
 
   // setting this to null will allow us to not have the undefined issue on render - so we can conditionally render data

@@ -11,9 +11,9 @@ function Valuation () {
     if (fiveYearProjection) {
         // myDCF = fiveYearProjection.map(year=>year.UFCF).reduce((a, b) => a+b)
         console.log(fiveYearProjection.map(year=>year.UFCF))
-        myDCF = fiveYearProjection.map(year => year.UFCF).reduce((a, b, i) => a + (b / Math.pow((1 + discRate), i+1)), 0)
+        myDCF = fiveYearProjection.map(year => year.UFCF).reduce((a, b, i) => a + (b / Math.pow((1 + discRate/100), i+1)), 0)
 
-        terminalDCF = fiveYearProjection[fiveYearProjection.length-1].ebitda / Math.pow((1 + discRate),fiveYearProjection.length) * eMultiplier
+        terminalDCF = fiveYearProjection[fiveYearProjection.length-1].ebitda / Math.pow((1 + discRate/100),fiveYearProjection.length) * eMultiplier
         
 
         // need to subtract netDebt from terminalDCF then this is good to go!
