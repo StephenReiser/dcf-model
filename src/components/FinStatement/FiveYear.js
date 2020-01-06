@@ -71,7 +71,7 @@ function FiveYear () {
             
             startingPoint.tax = tax
             startingPoint.depAmm = fiveYearArray[i].depAmm * (1 + depAmmGrowth)
-            startingPoint.nwc = fiveYearArray[i].nwc * ( 1 + nwcGrowth)
+            startingPoint.nwc = (fiveYearArray[i].nwc * ( 1 + nwcGrowth)) || 0
             startingPoint.capEx = fiveYearArray[i].capEx * (1 + capExGrowth)
             startingPoint.ebit = startingPoint.ebitda - startingPoint.depAmm
             startingPoint.ebi = startingPoint.ebit * (1-startingPoint.tax)

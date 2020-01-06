@@ -36,7 +36,7 @@ function HistoricalData () {
                     const tax = Number(fullData.ratios[key]["profitabilityIndicatorRatios"].effectiveTaxRate)
                     const ebi = ebit * (1-tax)
                     const depAmm = Number(fullData.cashFlow[key]["Depreciation & Amortization"])/1000000
-                    const nwc = Number(fullData.nwc[key])/1000000
+                    const nwc = Number(fullData.nwc[key])/1000000 || 0
                     const capEx = Number(fullData.cashFlow[key]["Capital Expenditure"])/1000000
                     const UFCF = ebi+depAmm+nwc+capEx
                 return(

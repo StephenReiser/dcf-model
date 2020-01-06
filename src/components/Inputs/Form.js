@@ -4,7 +4,7 @@ import BalanceSheet from '../FinStatement/BalanceSheet'
 
 function Form () {
 
-    const {searchStock, setSearchStock, setFullData, setGrowth, setShares} = useStockContext()
+    const {searchStock, setSearchStock, setFullData, setGrowth, setShares, setEbitdaAdj, setDepAmmAdj, setNwcAdj, setCapExAdj} = useStockContext()
    
 
 
@@ -70,8 +70,13 @@ function Form () {
             let nwcRateArray = []
             
             for (let i = 1; i<= 5; i++) {
+                if(isNaN((nwcArray[i-1] - nwcArray[i]) / nwcArray[i])) {
+                    nwcRateArray.push(0)
+                } else {
+                    nwcRateArray.push((nwcArray[i-1] - nwcArray[i]) / nwcArray[i])
+
+                }
                 
-                nwcRateArray.push((nwcArray[i-1] - nwcArray[i]) / nwcArray[i])
 
             }
 
@@ -80,21 +85,35 @@ function Form () {
             // should be beaking this up. but we can set baseline rates here
 
             // this stuff will cause the site to crash on newer companies - so probably need to think about some useful logic there
+            let ebitdaGrowth = 0
+            let averageTax = 0
+            let depAmmGrowth = 0
+            let capExGrowth = 0
+            let nwcGrowthRate = 0
 
-            let ebitdaGrowth = Math.pow(((Number(data1.financials[0].EBITDA) / Number(data1.financials[3].EBITDA))  ), (1/3))   - 1
-            let averageTax = (Number(data3.ratios[0].profitabilityIndicatorRatios.effectiveTaxRate) + Number(data3.ratios[1].profitabilityIndicatorRatios.effectiveTaxRate) + Number(data3.ratios[2].profitabilityIndicatorRatios.effectiveTaxRate) ) / 3
+            if(data1.financials[3]) {
 
-            let depAmmGrowth = Math.pow(((data4.financials[0]["Depreciation & Amortization"] / data4.financials[3]["Depreciation & Amortization"])), (1/3)) - 1 
+                ebitdaGrowth = Math.pow(((Number(data1.financials[0].EBITDA) / Number(data1.financials[3].EBITDA))  ), (1/3))   - 1
+
+                averageTax = (Number(data3.ratios[0].profitabilityIndicatorRatios.effectiveTaxRate) + Number(data3.ratios[1].profitabilityIndicatorRatios.effectiveTaxRate) + Number(data3.ratios[2].profitabilityIndicatorRatios.effectiveTaxRate) ) / 3
+
+                depAmmGrowth = Math.pow(((data4.financials[0]["Depreciation & Amortization"] / data4.financials[3]["Depreciation & Amortization"])), (1/3)) - 1 
+                
+                capExGrowth = Math.pow(((data4.financials[0]["Capital Expenditure"] / data4.financials[3]["Capital Expenditure"])), (1/3)) - 1 
+                
+                nwcGrowthRate = nwcRateArray.reduce((a, b) => a + b, 0)
+                
+                console.log(nwcArray)
+                console.log(ebitdaGrowth.toFixed(3), averageTax.toFixed(3), depAmmGrowth.toFixed(3), capExGrowth.toFixed(3), nwcGrowthRate) 
+            }
 
 
-            let capExGrowth = Math.pow(((data4.financials[0]["Capital Expenditure"] / data4.financials[3]["Capital Expenditure"])), (1/3)) - 1 
+
+
 
             // let startingNWC = data2.financials[3]["Total current assets"] - data2.financials[3]["Total current liabilities"]
 
-            let nwcGrowthRate = nwcRateArray.reduce((a, b) => a + b, 0)
 
-            console.log(nwcArray)
-            console.log(ebitdaGrowth.toFixed(3), averageTax.toFixed(3), depAmmGrowth.toFixed(3), capExGrowth.toFixed(3), nwcGrowthRate) 
 
             setGrowth({
                 ebitdaGrowth: ebitdaGrowth.toFixed(3),
@@ -113,25 +132,22 @@ function Form () {
                 nwc: nwcArray.slice(0,3).reverse()
              })
 
+             if (res8.profile) {
             setShares(res8.profile.mktCap / res8.profile.price)
+             }
+
+            setEbitdaAdj(0)
+            setDepAmmAdj(0)
+            setNwcAdj(0) 
+            setCapExAdj(0)
+
+            // simply resetting the manual adjustments - when we search for a new stock
+
             // it might actually make sense to combine the data here and set one state for what I want
         
             
         })
         
-
-
-
-        // fetch(`https://financialmodelingprep.com/api/v3/financials/income-statement/${searchStock}`)
-        // .then(res => res.json())
-        // .then(res => {
-        //     console.log(res)
-        //     console.log(res.symbol)
-        //     setMyTest(res.symbol)
-        // })
-        // .catch(err => console.log('error')
-        //     // this isn't donig anything because we are just getting an empty object - so its not an error
-        // )
 
 
         
