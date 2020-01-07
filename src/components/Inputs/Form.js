@@ -4,7 +4,7 @@ import BalanceSheet from '../FinStatement/BalanceSheet'
 
 function Form () {
 
-    const {searchStock, setSearchStock, setFullData, setGrowth, setShares, setEbitdaAdj, setDepAmmAdj, setNwcAdj, setCapExAdj} = useStockContext()
+    const {searchStock, setSearchStock, setFullData, setGrowth, setShares, setEbitdaAdj, setDepAmmAdj, setNwcAdj, setCapExAdj, setStockPrice, setEntValue, setEMultiplier} = useStockContext()
    
 
 
@@ -21,9 +21,10 @@ function Form () {
             fetch(`https://financialmodelingprep.com/api/v3/financial-statement-growth/${searchStock}`),
             fetch(`https://financialmodelingprep.com/api/v3/company/discounted-cash-flow/${searchStock}`),
             fetch(`https://financialmodelingprep.com/api/v3/company/historical-discounted-cash-flow/${searchStock}`),
-            fetch(`https://financialmodelingprep.com/api/v3/company/profile/${searchStock}`)
+            fetch(`https://financialmodelingprep.com/api/v3/company/profile/${searchStock}`),
+            fetch(`https://financialmodelingprep.com/api/v3/company-key-metrics/${searchStock}`)
 
-        ]).then(([res1, res2, res3, res4, res5, res6, res7, res8]) => Promise.all([res1.json(), res2.json(), res3.json(), res4.json(), res5.json(), res6.json(), res7.json(), res8.json()]) ).then(([data1, data2, data3, data4,res5, res6, res7, res8]) => {
+        ]).then(([res1, res2, res3, res4, res5, res6, res7, res8, res9]) => Promise.all([res1.json(), res2.json(), res3.json(), res4.json(), res5.json(), res6.json(), res7.json(), res8.json(), res9.json()]) ).then(([data1, data2, data3, data4,res5, res6, res7, res8, res9]) => {
             // setIncomeStatement(data1);
             // setBalanceSheet(data2);
             // setRatios(data3);
@@ -140,6 +141,10 @@ function Form () {
             setDepAmmAdj(0)
             setNwcAdj(0) 
             setCapExAdj(0)
+            setStockPrice(res8.profile.price)
+            
+            setEMultiplier(res9.metrics[0]["Enterprise Value over EBITDA"])
+            setEntValue(res9.metrics[0]["Enterprise Value over EBITDA"])
 
             // simply resetting the manual adjustments - when we search for a new stock
 

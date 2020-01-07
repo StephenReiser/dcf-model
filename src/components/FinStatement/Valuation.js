@@ -4,7 +4,7 @@ import {useStockContext} from '../../context'
 
 function Valuation () {
 
-    const {fiveYearProjection, discRate, eMultiplier, shares} = useStockContext()
+    const {fiveYearProjection, discRate, eMultiplier, shares, stockPrice} = useStockContext()
 
     let myDCF = 0
     let terminalDCF = 0
@@ -49,6 +49,9 @@ function Valuation () {
         </div>
         <div className = 'row'>
             Equity Value: { Number(((myDCF + terminalDCF) / (shares/1000000)).toFixed(2)).toLocaleString()}
+        </div>
+        <div className = 'row'>
+            Current Stock Price: {stockPrice}
         </div>
         </>
 

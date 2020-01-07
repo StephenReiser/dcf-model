@@ -36,6 +36,9 @@ function App() {
   const [depAmmAdj, setDepAmmAdj] = useState(0)
   const [nwcAdj, setNwcAdj] = useState(0)
   const [capExAdj, setCapExAdj] = useState(0)
+  const [stockPrice, setStockPrice] = useState(0)
+  const [entValue, setEntValue] = useState(0)
+
   
   
 
@@ -46,7 +49,7 @@ function App() {
   
   return (
 
-    <StockContext.Provider value ={{searchStock ,setSearchStock, myStock, setMyStock, incomeStatement, setIncomeStatement, balanceSheet, setBalanceSheet, ratios, setRatios, cashFlow, setCashFlow, fullData, setFullData,fiveYearProjection, setFiveYearProjection, growth, setGrowth, ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, tax, setTax, eMultiplier, setEMultiplier, discRate, setDiscRate, shares, setShares, ebitdaAdj, setEbitdaAdj, depAmmAdj, setDepAmmAdj, nwcAdj, setNwcAdj, capExAdj, setCapExAdj}}>
+    <StockContext.Provider value ={{searchStock ,setSearchStock, myStock, setMyStock, incomeStatement, setIncomeStatement, balanceSheet, setBalanceSheet, ratios, setRatios, cashFlow, setCashFlow, fullData, setFullData,fiveYearProjection, setFiveYearProjection, growth, setGrowth, ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, tax, setTax, eMultiplier, setEMultiplier, discRate, setDiscRate, shares, setShares, ebitdaAdj, setEbitdaAdj, depAmmAdj, setDepAmmAdj, nwcAdj, setNwcAdj, capExAdj, setCapExAdj, stockPrice, setStockPrice, entValue, setEntValue}}>
       <div className="container">
         
         
