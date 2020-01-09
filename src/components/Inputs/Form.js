@@ -4,7 +4,7 @@ import BalanceSheet from '../FinStatement/BalanceSheet'
 
 function Form () {
 
-    const {searchStock, setSearchStock, setFullData, setGrowth, setShares, setEbitdaAdj, setDepAmmAdj, setNwcAdj, setCapExAdj, setStockPrice, setEntValue, setEMultiplier} = useStockContext()
+    const {searchStock, setSearchStock, setFullData, setGrowth, setShares, setEbitdaAdj, setDepAmmAdj, setNwcAdj, setCapExAdj, setStockPrice, setEntValue, setEMultiplier, setNetDebt} = useStockContext()
    
 
 
@@ -51,7 +51,7 @@ function Form () {
             // commented out for now - this is causing an error for new companies
 
             // end DCF object - currently not being set anywhere but I want to have it
-
+            console.log('fetch complete')
 
              // calculates NWC for us
              let nwcArray = []
@@ -81,7 +81,7 @@ function Form () {
 
             }
 
-
+            console.log(nwcRateArray)
 
             // should be beaking this up. but we can set baseline rates here
 
@@ -94,18 +94,39 @@ function Form () {
 
             if(data1.financials[3]) {
 
-                ebitdaGrowth = Math.pow(((Number(data1.financials[0].EBITDA) / Number(data1.financials[3].EBITDA))  ), (1/3))   - 1
+                ebitdaGrowth = ebitdaGrowthFormula(data1, 3)
 
-                averageTax = (Number(data3.ratios[0].profitabilityIndicatorRatios.effectiveTaxRate) + Number(data3.ratios[1].profitabilityIndicatorRatios.effectiveTaxRate) + Number(data3.ratios[2].profitabilityIndicatorRatios.effectiveTaxRate) ) / 3
+                averageTax = averageTaxFormula(data3, 3)
 
-                depAmmGrowth = Math.pow(((data4.financials[0]["Depreciation & Amortization"] / data4.financials[3]["Depreciation & Amortization"])), (1/3)) - 1 
+                depAmmGrowth = depAmmGrowthFormula(data4, 3)
                 
-                capExGrowth = Math.pow(((data4.financials[0]["Capital Expenditure"] / data4.financials[3]["Capital Expenditure"])), (1/3)) - 1 
+                capExGrowth = capExGrowthFormula(data4, 3)
                 
                 nwcGrowthRate = nwcRateArray.reduce((a, b) => a + b, 0)
                 
                 console.log(nwcArray)
                 console.log(ebitdaGrowth.toFixed(3), averageTax.toFixed(3), depAmmGrowth.toFixed(3), capExGrowth.toFixed(3), nwcGrowthRate) 
+            }
+
+            let fiveYearEbitdaGrowth = 0
+            let fiveYearAverageTax = 0
+            let fiveYearDepAmmGrowth = 0
+            let fiveYearCapExGrowth = 0
+            
+
+            if(data1.financials[5]) {
+
+                fiveYearEbitdaGrowth = ebitdaGrowthFormula(data1, 5)
+
+                fiveYearAverageTax = averageTaxFormula(data3, 5)
+
+                fiveYearDepAmmGrowth = depAmmGrowthFormula(data4, 5)
+                
+                fiveYearCapExGrowth = capExGrowthFormula(data4, 5)
+                
+                
+                
+                
             }
 
 
@@ -117,11 +138,20 @@ function Form () {
 
 
             setGrowth({
-                ebitdaGrowth: ebitdaGrowth.toFixed(3),
-                depAmmGrowth: depAmmGrowth.toFixed(3),
-                nwcGrowth: nwcGrowthRate.toFixed(3),
-                capExGrowth: capExGrowth.toFixed(3),
-                tax: averageTax.toFixed(3)
+                threeYear: {
+                    ebitdaGrowth: ebitdaGrowth.toFixed(3),
+                    depAmmGrowth: depAmmGrowth.toFixed(3),
+                    nwcGrowth: nwcGrowthRate.toFixed(3),
+                    capExGrowth: capExGrowth.toFixed(3),
+                    tax: averageTax.toFixed(3)
+            }, 
+                fiveYear: {
+                    ebitdaGrowth: fiveYearEbitdaGrowth.toFixed(3),
+                    depAmmGrowth: fiveYearDepAmmGrowth.toFixed(3),
+                    nwcGrowth: nwcGrowthRate.toFixed(3),
+                    capExGrowth: fiveYearCapExGrowth.toFixed(3),
+                    tax: fiveYearAverageTax.toFixed(3)
+            }
               })
 
 
@@ -142,6 +172,8 @@ function Form () {
             setNwcAdj(0) 
             setCapExAdj(0)
             setStockPrice(res8.profile.price)
+            setNetDebt(data2.financials[0]["Total debt"] - data2.financials[0]["Cash and cash equivalents"] - data2.financials[0]["Short-term investments"] - data2.financials[0]["Long-term investments"])
+
             
             setEMultiplier(res9.metrics[0]["Enterprise Value over EBITDA"])
             setEntValue(res9.metrics[0]["Enterprise Value over EBITDA"])
@@ -151,12 +183,35 @@ function Form () {
             // it might actually make sense to combine the data here and set one state for what I want
         
             
-        })
+        }).catch(err => console.log(err))
         
 
 
         
 
+      }
+
+
+      const ebitdaGrowthFormula = (dataSet, years) => {
+         return Math.pow(((Number(dataSet.financials[0].EBITDA) / Number(dataSet.financials[years].EBITDA))  ), (1/years))   - 1
+      }
+
+      const averageTaxFormula = (dataSet, years) => {
+          let taxRate = 0
+          for (let i = 0; i < years; i++) {
+            taxRate = taxRate + Number(dataSet.ratios[i].profitabilityIndicatorRatios.effectiveTaxRate)
+
+          }
+          return taxRate/years
+        
+      }
+
+      const depAmmGrowthFormula = (dataSet, years) => {
+        return Math.pow(((dataSet.financials[0]["Depreciation & Amortization"] / dataSet.financials[years]["Depreciation & Amortization"])), (1/years)) - 1 
+      }
+
+      const capExGrowthFormula = (dataSet, years) => {
+        return Math.pow(((dataSet.financials[0]["Capital Expenditure"] / dataSet.financials[years]["Capital Expenditure"])), (1/years)) - 1 
       }
 
     return(

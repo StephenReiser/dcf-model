@@ -4,7 +4,7 @@ import {useStockContext} from '../../context'
 
 function Valuation () {
 
-    const {fiveYearProjection, discRate, eMultiplier, shares, stockPrice} = useStockContext()
+    const {fiveYearProjection, discRate, eMultiplier, shares, stockPrice, netDebt, fullData} = useStockContext()
 
     let myDCF = 0
     let terminalDCF = 0
@@ -22,6 +22,13 @@ function Valuation () {
         myDCF = 0
     }
     
+
+    let myShares = 0
+
+    if (fullData) {
+       myShares =  Number((shares/1000000 / (fullData.incomeStatement[fullData.incomeStatement.length - 1]["EPS Diluted"] / fullData.incomeStatement[fullData.incomeStatement.length - 1]["EPS"])))
+       console.log(myShares)
+    }
     
     useEffect(() => {
         // if (fiveYearProjection) {
@@ -29,7 +36,7 @@ function Valuation () {
         //     myDCF = (fiveYearProjection[0].UFCF)  
         // }
         
-    },[fiveYearProjection, discRate, eMultiplier, shares])
+    },[fiveYearProjection, discRate, eMultiplier, shares, stockPrice, netDebt, fullData])
 
     return (
         <>
@@ -44,11 +51,14 @@ function Valuation () {
         <div className = 'row'>
             Total Value: {Number((myDCF + terminalDCF).toFixed(0)).toLocaleString()}
         </div>
+        {/* <div className = 'row'>
+            Shares Outstanding: {shares ? Number((shares/1000000 ).toFixed(0)).toLocaleString() : 0}
+        </div> */}
         <div className = 'row'>
-            Shares Outstanding: {shares ? Number((shares/1000000).toFixed(0)).toLocaleString() : 0}
+            Diluted Shares Outstanding: {shares ? Number(myShares.toFixed(0)).toLocaleString() : 0}
         </div>
         <div className = 'row'>
-            Equity Value: { Number(((myDCF + terminalDCF) / (shares/1000000)).toFixed(2)).toLocaleString()}
+            Equity Value: { Number(((myDCF + terminalDCF - netDebt/1000000) / (myShares)).toFixed(2)).toLocaleString()}
         </div>
         <div className = 'row'>
             Current Stock Price: {stockPrice}

@@ -3,6 +3,7 @@ import InputContainer from './components/Inputs/InputContainer'
 import {useStockContext, StockContext} from './context'
 import GrowthInputs from './components/Inputs/GrowthInputs'
 import Valuation from './components/FinStatement/Valuation'
+import TestComponent from './components/Test'
 
 
 
@@ -18,11 +19,20 @@ function App() {
   const [fullData, setFullData] = useState(null)
   const [fiveYearProjection, setFiveYearProjection] = useState(null)
   const [growth, setGrowth] = useState({
-    ebitdaGrowth: .05,
-    depAmmGrowth: .05,
-    nwcGrowth: -.10,
-    capExGrowth: .045,
-    tax: .24
+    threeYear: {
+      ebitdaGrowth: .05,
+      depAmmGrowth: .05,
+      nwcGrowth: -.10,
+      capExGrowth: .045,
+      tax: .24
+    },
+    fiveYear: {
+      ebitdaGrowth: .05,
+      depAmmGrowth: .05,
+      nwcGrowth: -.10,
+      capExGrowth: .045,
+      tax: .24
+      }
   })
   const [ebitda, setEbitda ] = useState(growth.ebitdaGrowth)
   const [depAmm, setDepAmm ] = useState(growth.depAmmGrowth)
@@ -38,6 +48,7 @@ function App() {
   const [capExAdj, setCapExAdj] = useState(0)
   const [stockPrice, setStockPrice] = useState(0)
   const [entValue, setEntValue] = useState(0)
+  const [netDebt, setNetDebt] = useState(0)
 
   
   
@@ -49,10 +60,10 @@ function App() {
   
   return (
 
-    <StockContext.Provider value ={{searchStock ,setSearchStock, myStock, setMyStock, incomeStatement, setIncomeStatement, balanceSheet, setBalanceSheet, ratios, setRatios, cashFlow, setCashFlow, fullData, setFullData,fiveYearProjection, setFiveYearProjection, growth, setGrowth, ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, tax, setTax, eMultiplier, setEMultiplier, discRate, setDiscRate, shares, setShares, ebitdaAdj, setEbitdaAdj, depAmmAdj, setDepAmmAdj, nwcAdj, setNwcAdj, capExAdj, setCapExAdj, stockPrice, setStockPrice, entValue, setEntValue}}>
+    <StockContext.Provider value ={{searchStock ,setSearchStock, myStock, setMyStock, incomeStatement, setIncomeStatement, balanceSheet, setBalanceSheet, ratios, setRatios, cashFlow, setCashFlow, fullData, setFullData,fiveYearProjection, setFiveYearProjection, growth, setGrowth, ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, tax, setTax, eMultiplier, setEMultiplier, discRate, setDiscRate, shares, setShares, ebitdaAdj, setEbitdaAdj, depAmmAdj, setDepAmmAdj, nwcAdj, setNwcAdj, capExAdj, setCapExAdj, stockPrice, setStockPrice, entValue, setEntValue, netDebt, setNetDebt}}>
       <div className="container">
         
-        
+        {/* <TestComponent /> */}
         <GrowthInputs />
         <InputContainer />
         <Valuation />

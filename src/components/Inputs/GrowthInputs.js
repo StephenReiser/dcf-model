@@ -17,11 +17,14 @@ function GrowthInputs () {
 
     useEffect(() => {
         console.log(fullData)
-    setEbitda(growth.ebitdaGrowth)
-    setDepAmm(growth.depAmmGrowth)
-    setCapEx(growth.capExGrowth)
-    setNwc(growth.nwcGrowth)
-    setTax(growth.tax)
+    setEbitda(growth.threeYear.ebitdaGrowth)
+    setDepAmm(growth.threeYear.depAmmGrowth)
+    setCapEx(growth.threeYear.capExGrowth)
+    setNwc(-0.05)
+
+    // NWC seems to rapidly adjust - so just setting a basic default value here - in terminal years is should begin to decreas toward 0 - same with capex fwiw
+    
+    setTax(growth.threeYear.tax)
     }, [growth])
     // I think what would be good here is when we submit a new stock - this stuff runs resetting defaults or pulling in a baseline number - right now anythign you change stays for the next ones
 
@@ -41,20 +44,22 @@ function GrowthInputs () {
         <form onSubmit = {setNewGrowths}>
         <div className = 'row'>
             <div className = 'col-5'>Name</div>
-            <div className = 'col-2'>3yr Avg</div>
+            <div className = 'col-1'>5yr Avg</div>
+            <div className = 'col-1'>3yr Avg</div>
             <div className = 'col-1'>Manual Adj</div>
             <div className = 'col-1'>Custom</div>
             <div className = 'col-3'></div>
 
         </div>
-        <GrowthInputChild name = {'EBITDA'} value = {growth.ebitdaGrowth} adj = {ebitdaAdj} adjFunc = {(e) => setEbitdaAdj(e)} input = {ebitda} inputFunc = {(e) =>setEbitda(e)}/>
-        <GrowthInputChild name = {'D&A'} value = {growth.depAmmGrowth} adj = {depAmmAdj} adjFunc = {(e) => setDepAmmAdj(e)} input = {depAmm} inputFunc = {(e) =>setDepAmm(e)}/>
-        <GrowthInputChild name = {'CapEx'} value = {growth.capExGrowth} adj = {capExAdj} adjFunc = {(e) => setCapExAdj(e)} input = {capEx} inputFunc = {(e) =>setCapEx(e)}/>
-        <GrowthInputChild name = {'NWC'} value = {growth.nwcGrowth} adj = {nwcAdj} adjFunc = {(e) => setNwcAdj(e)} input = {nwc} inputFunc = {(e) =>setNwc(e)}/>
+        <GrowthInputChild name = {'EBITDA'} fiveYearValue = {growth.fiveYear.ebitdaGrowth} value = {growth.threeYear.ebitdaGrowth} adj = {ebitdaAdj} adjFunc = {(e) => setEbitdaAdj(e)} input = {ebitda} inputFunc = {(e) =>setEbitda(e)}/>
+        <GrowthInputChild name = {'D&A'} fiveYearValue = {growth.fiveYear.depAmmGrowth} value = {growth.threeYear.depAmmGrowth} adj = {depAmmAdj} adjFunc = {(e) => setDepAmmAdj(e)} input = {depAmm} inputFunc = {(e) =>setDepAmm(e)}/>
+        <GrowthInputChild name = {'CapEx'} fiveYearValue = {growth.fiveYear.capExGrowth} value = {growth.threeYear.capExGrowth} adj = {capExAdj} adjFunc = {(e) => setCapExAdj(e)} input = {capEx} inputFunc = {(e) =>setCapEx(e)}/>
+        <GrowthInputChild name = {'NWC'} fiveYearValue = {growth.fiveYear.nwcGrowth} value = {growth.threeYear.nwcGrowth} adj = {nwcAdj} adjFunc = {(e) => setNwcAdj(e)} input = {nwc} inputFunc = {(e) =>setNwc(e)}/>
         
         <div className = 'row'>
           <div className = 'col-5'>Tax</div>
-          <div className = 'col-2'>{growth.tax}</div>
+          <div className = 'col-1'>{growth.fiveYear.tax}</div>
+          <div className = 'col-1'>{growth.threeYear.tax}</div>
           <div className = 'col-1'></div>
           <div className = 'col-1'>
           <input 
