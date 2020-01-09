@@ -1,9 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import InputContainer from './components/Inputs/InputContainer'
+
 import {useStockContext, StockContext} from './context'
-import GrowthInputs from './components/Inputs/GrowthInputs'
-import Valuation from './components/FinStatement/Valuation'
+
 import TestComponent from './components/Test'
+import MainTab from './components/Tabs/MainTab'
+import ChartTab from './components/Tabs/Charts';
+import TabHome from './components/Tabs/TabHome'
+import GrowthInputs from './components/Inputs/GrowthInputs'
+
 
 
 
@@ -49,6 +53,13 @@ function App() {
   const [stockPrice, setStockPrice] = useState(0)
   const [entValue, setEntValue] = useState(0)
   const [netDebt, setNetDebt] = useState(0)
+  
+  let showChart = false
+
+  const toggleChart = () => {
+    console.log(showChart)
+    showChart = !showChart
+  }
 
   
   
@@ -56,6 +67,7 @@ function App() {
   // setting this to null will allow us to not have the undefined issue on render - so we can conditionally render data
 
 
+  
 
   
   return (
@@ -63,10 +75,12 @@ function App() {
     <StockContext.Provider value ={{searchStock ,setSearchStock, myStock, setMyStock, incomeStatement, setIncomeStatement, balanceSheet, setBalanceSheet, ratios, setRatios, cashFlow, setCashFlow, fullData, setFullData,fiveYearProjection, setFiveYearProjection, growth, setGrowth, ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, tax, setTax, eMultiplier, setEMultiplier, discRate, setDiscRate, shares, setShares, ebitdaAdj, setEbitdaAdj, depAmmAdj, setDepAmmAdj, nwcAdj, setNwcAdj, capExAdj, setCapExAdj, stockPrice, setStockPrice, entValue, setEntValue, netDebt, setNetDebt}}>
       <div className="container">
         
-        {/* <TestComponent /> */}
+      
         <GrowthInputs />
-        <InputContainer />
-        <Valuation />
+        <TabHome />
+        
+        
+       
 
       </div>
     </StockContext.Provider>
