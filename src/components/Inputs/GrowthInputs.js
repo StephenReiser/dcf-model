@@ -43,23 +43,25 @@ function GrowthInputs () {
     return(
         <form onSubmit = {setNewGrowths}>
         <div className = 'row'>
-            <div className = 'col-5'>Name</div>
+            <div className = 'col-4'>Name</div>
             <div className = 'col-1'>5yr Avg</div>
             <div className = 'col-1'>3yr Avg</div>
+            <div className = 'col-1'>1yr Avg</div>
             <div className = 'col-1'>Manual Adj</div>
             <div className = 'col-1'>Custom</div>
             <div className = 'col-3'></div>
 
         </div>
-        <GrowthInputChild name = {'EBITDA'} fiveYearValue = {growth.fiveYear.ebitdaGrowth} value = {growth.threeYear.ebitdaGrowth} adj = {ebitdaAdj} adjFunc = {(e) => setEbitdaAdj(e)} input = {ebitda} inputFunc = {(e) =>setEbitda(e)}/>
-        <GrowthInputChild name = {'D&A'} fiveYearValue = {growth.fiveYear.depAmmGrowth} value = {growth.threeYear.depAmmGrowth} adj = {depAmmAdj} adjFunc = {(e) => setDepAmmAdj(e)} input = {depAmm} inputFunc = {(e) =>setDepAmm(e)}/>
-        <GrowthInputChild name = {'CapEx'} fiveYearValue = {growth.fiveYear.capExGrowth} value = {growth.threeYear.capExGrowth} adj = {capExAdj} adjFunc = {(e) => setCapExAdj(e)} input = {capEx} inputFunc = {(e) =>setCapEx(e)}/>
-        <GrowthInputChild name = {'NWC'} fiveYearValue = {growth.fiveYear.nwcGrowth} value = {growth.threeYear.nwcGrowth} adj = {nwcAdj} adjFunc = {(e) => setNwcAdj(e)} input = {nwc} inputFunc = {(e) =>setNwc(e)}/>
+        <GrowthInputChild name = {'EBITDA'} fiveYearValue = {growth.fiveYear.ebitdaGrowth} value = {growth.threeYear.ebitdaGrowth} adj = {ebitdaAdj} adjFunc = {(e) => setEbitdaAdj(e)} input = {ebitda} oneYear  = {growth.oneYear.ebitdaGrowth} inputFunc = {(e) =>setEbitda(e)}/>
+        <GrowthInputChild name = {'D&A'} fiveYearValue = {growth.fiveYear.depAmmGrowth} value = {growth.threeYear.depAmmGrowth} adj = {depAmmAdj} adjFunc = {(e) => setDepAmmAdj(e)} oneYear  = {growth.oneYear.depAmmGrowth} input = {depAmm} inputFunc = {(e) =>setDepAmm(e)}/>
+        <GrowthInputChild name = {'CapEx'} fiveYearValue = {growth.fiveYear.capExGrowth} value = {growth.threeYear.capExGrowth} adj = {capExAdj} adjFunc = {(e) => setCapExAdj(e)} oneYear  = {growth.oneYear.capExGrowth} input = {capEx} inputFunc = {(e) =>setCapEx(e)}/>
+        <GrowthInputChild name = {'NWC'} fiveYearValue = {growth.fiveYear.nwcGrowth} value = {growth.threeYear.nwcGrowth} oneYear  = {growth.oneYear.nwcGrowth} adj = {nwcAdj} adjFunc = {(e) => setNwcAdj(e)} input = {nwc} inputFunc = {(e) =>setNwc(e)}/>
         
         <div className = 'row'>
-          <div className = 'col-5'>Tax</div>
+          <div className = 'col-4'>Tax</div>
           <div className = 'col-1'>{growth.fiveYear.tax}</div>
           <div className = 'col-1'>{growth.threeYear.tax}</div>
+          <div className = 'col-1'>{growth.oneYear.tax}</div>
           <div className = 'col-1'></div>
           <div className = 'col-1'>
           <input 
@@ -71,8 +73,9 @@ function GrowthInputs () {
           <div className = 'col-3'></div>
         </div>
         <div className = 'row'>
-          <div className = 'col-5'>Terminal Earnings Multiplier</div>
+          <div className = 'col-4'>Terminal Earnings Multiplier</div>
           <div className = 'col-2'>{entValue}</div>
+          <div className = 'col-1'></div>
           <div className = 'col-1'></div>
           <div className = 'col-1'>
           <input 
@@ -84,8 +87,9 @@ function GrowthInputs () {
           <div className = 'col-3'></div>
         </div>
         <div className = 'row'>
-          <div className = 'col-5'>Discount Rate</div>
+          <div className = 'col-4'>Discount Rate</div>
           <div className = 'col-2'>{discRate}</div>
+          <div className = 'col-1'></div>
           <div className = 'col-1'></div>
           <div className = 'col-1'>
           <input 

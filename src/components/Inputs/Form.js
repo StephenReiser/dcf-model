@@ -23,7 +23,7 @@ function Form () {
             fetch(`https://financialmodelingprep.com/api/v3/company/historical-discounted-cash-flow/${searchStock}`),
             fetch(`https://financialmodelingprep.com/api/v3/company/profile/${searchStock}`),
             fetch(`https://financialmodelingprep.com/api/v3/company-key-metrics/${searchStock}`),
-            fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${searchStock}?from=2017-01-01&to=2019-03-12`)
+            fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${searchStock}?from=2017-01-01&to=2030-01-12`)
 
         ]).then(([res1, res2, res3, res4, res5, res6, res7, res8, res9, chartData]) => Promise.all([res1.json(), res2.json(), res3.json(), res4.json(), res5.json(), res6.json(), res7.json(), res8.json(), res9.json(), chartData.json()]) ).then(([data1, data2, data3, data4,res5, res6, res7, res8, res9,chartData]) => {
             // setIncomeStatement(data1);
@@ -105,8 +105,8 @@ function Form () {
                 
                 nwcGrowthRate = nwcRateArray.reduce((a, b) => a + b, 0)
                 
-                console.log(nwcArray)
-                console.log(ebitdaGrowth.toFixed(3), averageTax.toFixed(3), depAmmGrowth.toFixed(3), capExGrowth.toFixed(3), nwcGrowthRate) 
+                // console.log(nwcArray)
+                // console.log(ebitdaGrowth.toFixed(3), averageTax.toFixed(3), depAmmGrowth.toFixed(3), capExGrowth.toFixed(3), nwcGrowthRate) 
             }
 
             let fiveYearEbitdaGrowth = 0
@@ -124,6 +124,27 @@ function Form () {
                 fiveYearDepAmmGrowth = depAmmGrowthFormula(data4, 5)
                 
                 fiveYearCapExGrowth = capExGrowthFormula(data4, 5)
+                
+                
+                
+                
+            }
+
+            let oneYearEbitdaGrowth = 0
+            let oneYearAverageTax = 0
+            let oneYearDepAmmGrowth = 0
+            let oneYearCapExGrowth = 0
+            
+
+            if(data1.financials[1]) {
+
+                oneYearEbitdaGrowth = ebitdaGrowthFormula(data1, 1)
+
+                oneYearAverageTax = averageTaxFormula(data3, 1)
+
+                oneYearDepAmmGrowth = depAmmGrowthFormula(data4, 1)
+                
+                oneYearCapExGrowth = capExGrowthFormula(data4, 1)
                 
                 
                 
@@ -152,6 +173,13 @@ function Form () {
                     nwcGrowth: nwcGrowthRate.toFixed(3),
                     capExGrowth: fiveYearCapExGrowth.toFixed(3),
                     tax: fiveYearAverageTax.toFixed(3)
+            },
+                oneYear: {
+                    ebitdaGrowth: oneYearEbitdaGrowth.toFixed(3),
+                    depAmmGrowth: oneYearDepAmmGrowth.toFixed(3),
+                    nwcGrowth: nwcGrowthRate.toFixed(3),
+                    capExGrowth: oneYearCapExGrowth.toFixed(3),
+                    tax: oneYearAverageTax.toFixed(3)
             }
               })
 

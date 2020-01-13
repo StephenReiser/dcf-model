@@ -7,6 +7,7 @@ import MainTab from './components/Tabs/MainTab'
 import ChartTab from './components/Tabs/Charts';
 import TabHome from './components/Tabs/TabHome'
 import GrowthInputs from './components/Inputs/GrowthInputs'
+import Valuation from './components/FinStatement/Valuation'
 
 
 
@@ -36,7 +37,14 @@ function App() {
       nwcGrowth: -.10,
       capExGrowth: .045,
       tax: .24
-      }
+      },
+    oneYear: {
+      ebitdaGrowth: .05,
+      depAmmGrowth: .05,
+      nwcGrowth: -.10,
+      capExGrowth: .045,
+      tax: .24
+      },
   })
   const [ebitda, setEbitda ] = useState(growth.ebitdaGrowth)
   const [depAmm, setDepAmm ] = useState(growth.depAmmGrowth)
@@ -76,9 +84,16 @@ function App() {
     <StockContext.Provider value ={{searchStock ,setSearchStock, myStock, setMyStock, incomeStatement, setIncomeStatement, balanceSheet, setBalanceSheet, ratios, setRatios, cashFlow, setCashFlow, fullData, setFullData,fiveYearProjection, setFiveYearProjection, growth, setGrowth, ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, tax, setTax, eMultiplier, setEMultiplier, discRate, setDiscRate, shares, setShares, ebitdaAdj, setEbitdaAdj, depAmmAdj, setDepAmmAdj, nwcAdj, setNwcAdj, capExAdj, setCapExAdj, stockPrice, setStockPrice, entValue, setEntValue, netDebt, setNetDebt, chartData, setChartData}}>
       <div className="container">
         
-      
-        <GrowthInputs />
-        <TabHome />
+      <div className = 'row'>
+        <div className = 'col-9'>
+          <GrowthInputs />
+        </div>
+        <div className = 'col-3'>
+          <Valuation />
+        </div>
+      </div>
+        
+          <TabHome />
         
         
        

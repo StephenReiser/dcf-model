@@ -11,9 +11,10 @@ function GrowthInputChild (props) {
     // }, [fullData])
     return (
         <div className = 'row'>
-            <div className = 'col-5'>{props.name}</div>
+            <div className = 'col-4'>{props.name}</div>
             <div className = 'col-1'>{props.fiveYearValue}</div>
             <div className = 'col-1'>{props.value}</div>
+            <div className = 'col-1'>{props.oneYear}</div>
             <div className = 'col-1'>
             <input 
                     type="number" 
