@@ -43,6 +43,9 @@ function Valuation () {
             Diluted Shares Outstanding: {shares ? Number(myShares.toFixed(0)).toLocaleString() : 0}
         </div>
         <div className = 'row'>
+            Net Debt: {Number((netDebt/1000000).toFixed(0)).toLocaleString()}
+        </div>
+        <div className = 'row'>
             Equity Value: { Number(((myDCF + terminalDCF - netDebt/1000000) / (myShares)).toFixed(2)).toLocaleString()}
         </div>
         <div className = 'row'>
