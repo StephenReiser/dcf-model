@@ -7,7 +7,7 @@ const News = () => {
     
     return(
         <div>
-            {news ? news.articles.map(myNews => {
+            {news ? news.map(myNews => {
                 return(
                     <CompanyNews
                         url = {myNews.url}

@@ -53,7 +53,14 @@ function Form () {
             // commented out for now - this is causing an error for new companies
 
             // This can be a fetch for news - seems sketchy to put it in here though???
-            fetch(`https://newsapi.org/v2/everything?qintitle=(${searchStock}%20OR%20"${res8.profile.companyName}")&language=en&apiKey=b63a600feebd4b7bb43d8db2135791a8`).then(data => data.json()).then(data => setNews(data))
+            fetch(
+                `https://newsapi.org/v2/everything?qintitle=(${searchStock}%20OR%20"${res8.profile.companyName}")&pagesize=100&language=en&apiKey=b63a600feebd4b7bb43d8db2135791a8`).then(data => data.json()).then(data => setNews(data.articles.sort(function(a,b){
+                return new Date(b.publishedAt) - new Date(a.publishedAt)
+                    })))
+
+            // Fetching and sorting news newest first - we now need to include the ability to go through this list and add in 'favorites'
+
+
             // end DCF object - currently not being set anywhere but I want to have it
             console.log('fetch complete')
             // console.log(res8.profile.companyName)

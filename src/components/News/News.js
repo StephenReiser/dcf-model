@@ -13,7 +13,7 @@ const CompanyNews = (props) => {
         <div key = {props.url} className = 'row'>
             <div className = 'col-12'>
                 <h4><a href={props.url} target="_blank">{props.title}</a></h4>
-                <h5>{props.author}</h5>
+                <h5>{props.author} {new Date(props.date).toLocaleDateString()}</h5>
             </div>
             <div className = 'col-4'>
                 <img src={props.image} alt={props.title} className = 'newsImage' />
