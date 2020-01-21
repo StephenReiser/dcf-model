@@ -47,29 +47,29 @@ function HistoricalData () {
                         {date}
                     </td>
                     <td>
-                        {ebitda.toLocaleString()}
+                        {Math.floor(ebitda).toLocaleString()}
                     </td>
                     <td>
-                        {ebit.toLocaleString()}
+                        {Math.floor(ebit).toLocaleString()}
                     </td>
                     <td>
                         {(tax*100).toFixed(1)}%
                     </td>
                     <td>&nbsp;</td>
                     <td>
-                        {ebi.toLocaleString()}
+                        {Math.floor(ebi).toLocaleString()}
                     </td>
                     <td>
-                        {depAmm.toLocaleString()}
+                        {Math.floor(depAmm).toLocaleString()}
                     </td>
                     <td>
-                        {nwc.toLocaleString()}
+                        {Math.floor(nwc).toLocaleString()}
                     </td>
                     <td>
-                        {capEx.toLocaleString()}
+                        {Math.floor(capEx).toLocaleString()}
                     </td>
                     <td>
-                        {UFCF.toLocaleString()}
+                        {Math.floor(UFCF).toLocaleString()}
                     </td>
                     
                 </tr>

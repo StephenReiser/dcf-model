@@ -4,7 +4,7 @@ import BalanceSheet from '../FinStatement/BalanceSheet'
 
 function Form () {
 
-    const {searchStock, setSearchStock, setFullData, setGrowth, setShares, setEbitdaAdj, setDepAmmAdj, setNwcAdj, setCapExAdj, setStockPrice, setEntValue, setEMultiplier, setNetDebt, setChartData} = useStockContext()
+    const {searchStock, setSearchStock, setFullData, setGrowth, setShares, setEbitdaAdj, setDepAmmAdj, setNwcAdj, setCapExAdj, setStockPrice, setEntValue, setEMultiplier, setNetDebt, setChartData, setNews} = useStockContext()
    
 
 
@@ -23,7 +23,8 @@ function Form () {
             fetch(`https://financialmodelingprep.com/api/v3/company/historical-discounted-cash-flow/${searchStock}`),
             fetch(`https://financialmodelingprep.com/api/v3/company/profile/${searchStock}`),
             fetch(`https://financialmodelingprep.com/api/v3/company-key-metrics/${searchStock}`),
-            fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${searchStock}?from=2017-01-01&to=2030-01-12`)
+            fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${searchStock}?from=2017-01-01&to=2030-01-12`,
+            )
 
         ]).then(([res1, res2, res3, res4, res5, res6, res7, res8, res9, chartData]) => Promise.all([res1.json(), res2.json(), res3.json(), res4.json(), res5.json(), res6.json(), res7.json(), res8.json(), res9.json(), chartData.json()]) ).then(([data1, data2, data3, data4,res5, res6, res7, res8, res9,chartData]) => {
             // setIncomeStatement(data1);
@@ -51,8 +52,11 @@ function Form () {
 
             // commented out for now - this is causing an error for new companies
 
+            // This can be a fetch for news - seems sketchy to put it in here though???
+            fetch(`https://newsapi.org/v2/everything?qintitle=(${searchStock}%20OR%20"${res8.profile.companyName}")&language=en&apiKey=b63a600feebd4b7bb43d8db2135791a8`).then(data => data.json()).then(data => setNews(data))
             // end DCF object - currently not being set anywhere but I want to have it
             console.log('fetch complete')
+            // console.log(res8.profile.companyName)
 
              // calculates NWC for us
              let nwcArray = []

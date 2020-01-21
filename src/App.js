@@ -9,6 +9,13 @@ import TabHome from './components/Tabs/TabHome'
 import GrowthInputs from './components/Inputs/GrowthInputs'
 import Valuation from './components/FinStatement/Valuation'
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 
 
 
@@ -62,6 +69,7 @@ function App() {
   const [entValue, setEntValue] = useState(0)
   const [netDebt, setNetDebt] = useState(0)
   const [chartData, setChartData] = useState(null)
+  const [news, setNews] = useState(null)
   
   let showChart = false
 
@@ -81,7 +89,8 @@ function App() {
   
   return (
 
-    <StockContext.Provider value ={{searchStock ,setSearchStock, myStock, setMyStock, incomeStatement, setIncomeStatement, balanceSheet, setBalanceSheet, ratios, setRatios, cashFlow, setCashFlow, fullData, setFullData,fiveYearProjection, setFiveYearProjection, growth, setGrowth, ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, tax, setTax, eMultiplier, setEMultiplier, discRate, setDiscRate, shares, setShares, ebitdaAdj, setEbitdaAdj, depAmmAdj, setDepAmmAdj, nwcAdj, setNwcAdj, capExAdj, setCapExAdj, stockPrice, setStockPrice, entValue, setEntValue, netDebt, setNetDebt, chartData, setChartData}}>
+    <StockContext.Provider value ={{searchStock ,setSearchStock, myStock, setMyStock, incomeStatement, setIncomeStatement, balanceSheet, setBalanceSheet, ratios, setRatios, cashFlow, setCashFlow, fullData, setFullData,fiveYearProjection, setFiveYearProjection, growth, setGrowth, ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, tax, setTax, eMultiplier, setEMultiplier, discRate, setDiscRate, shares, setShares, ebitdaAdj, setEbitdaAdj, depAmmAdj, setDepAmmAdj, nwcAdj, setNwcAdj, capExAdj, setCapExAdj, stockPrice, setStockPrice, entValue, setEntValue, netDebt, setNetDebt, chartData, setChartData, news, setNews}}>
+      <Router>
       <div className="container">
         
       <div className = 'row'>
@@ -99,6 +108,7 @@ function App() {
        
 
       </div>
+      </Router>
     </StockContext.Provider>
   );
 }

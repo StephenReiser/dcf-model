@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import {Tab, Tabs} from 'react-bootstrap'
 import MainTab from './MainTab'
 import Charts from './Charts'
+import News from './News'
+import Favorites from './Favorites'
 
 
 function ControlledTabs() {
@@ -14,6 +16,12 @@ function ControlledTabs() {
         </Tab>
         <Tab eventKey="chart" title="Chart">
           <Charts />
+        </Tab>
+        <Tab eventKey="news" title="News">
+          <News />
+        </Tab>
+        <Tab eventKey="favorites" title="Favorites">
+          <Favorites />
         </Tab>
         {/* <Tab eventKey="contact" title="Contact" disabled>
           <div>
