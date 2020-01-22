@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {useStockContext} from '../../context'
+import React from 'react';
+// import {useStockContext} from '../../context'
 
 function GrowthInputChild (props) {
 

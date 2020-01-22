@@ -4,6 +4,7 @@ import MainTab from './MainTab'
 import Charts from './Charts'
 import News from './News'
 import Favorites from './Favorites'
+import Notes from '../Notes/Notes'
 
 
 function ControlledTabs() {
@@ -22,6 +23,9 @@ function ControlledTabs() {
         </Tab>
         <Tab eventKey="favorites" title="Favorites">
           <Favorites />
+        </Tab>
+        <Tab eventKey="notes" title="Notes">
+          <Notes />
         </Tab>
         {/* <Tab eventKey="contact" title="Contact" disabled>
           <div>

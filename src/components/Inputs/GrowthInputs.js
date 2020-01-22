@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {useStockContext} from '../../context'
 import GrowthInputChild from './GrowthInputChild'
 import '../../css/firstTable.css'

@@ -51,6 +51,7 @@ function Form () {
             // console.log(dcfObject)
 
             // commented out for now - this is causing an error for new companies
+            console.log('fetch complete')
 
             // This can be a fetch for news - seems sketchy to put it in here though???
             fetch(
@@ -62,7 +63,6 @@ function Form () {
 
 
             // end DCF object - currently not being set anywhere but I want to have it
-            console.log('fetch complete')
             // console.log(res8.profile.companyName)
 
              // calculates NWC for us

@@ -1,14 +1,17 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {useStockContext} from '../../context'
 import CompanyNews from '../News/News'
 
 const News = () => {
-    const {news, searchStock} = useStockContext()
+    const {news} = useStockContext()
     
     return(
-        <div>
+        <div className = "row">
             {news ? news.map(myNews => {
                 return(
+                    
+
+                    
                     <CompanyNews
                         url = {myNews.url}
                         title = {myNews.title}
