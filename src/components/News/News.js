@@ -1,7 +1,44 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import {useStockContext} from '../../context'
+import firebase from '../../firebase'
+
+
+
 
 
 const CompanyNews = (props) => {
+    const [favorites, setFavorites] = useState(false)
+
+    const {favoriteArticles} = useStockContext()
+
+    
+
+
+
+
+
+
+
+
+    const addFavoriteFunc = () => {
+        setFavorites(!favorites)
+        console.log('added favorite', props.url)
+
+        // really this needs to be a add request to db
+    }
+
+    const removeFavoriteFunc = () => {
+        setFavorites(!favorites)
+        console.log('removed favorite', props.url)
+
+        // really this needs to be a remove request to db
+    }
+
+    // useEffect(() => {
+    //     if (favoriteArticles.includes(props.url)) {
+    //         setFavorites(true)
+    //     }
+    // }, [])
     
     return(
     <div className = "col-6 fullCard">
@@ -11,9 +48,10 @@ const CompanyNews = (props) => {
             <h4 className="card-title"><a href={props.url} target="_blank" rel="noopener noreferrer">{props.title}</a></h4>
             <h5 className = "card-title">{props.author} {new Date(props.date).toLocaleDateString()}</h5>
             
-            <p class="card-text">{props.content} <a href={props.url} target="_blank" rel="noopener noreferrer">read more </a> </p>
+            <p className="card-text">{props.content} <a href={props.url} target="_blank" rel="noopener noreferrer">read more </a> </p>
             <div className="card-footer myFooter">
-                <button>Add To Favorites</button>
+                {props.favorited ? <button className = 'btn-block btn btn-warning' onClick = {() => removeFavoriteFunc()}>Remove from Favorites</button> : <button className = 'btn-block btn btn-success' onClick = {() => addFavoriteFunc()}>Add To Favorites</button>}
+                
                 </div>
             </div>
         </div>
