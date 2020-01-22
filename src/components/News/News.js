@@ -34,11 +34,11 @@ const CompanyNews = (props) => {
         // really this needs to be a remove request to db
     }
 
-    // useEffect(() => {
-    //     if (favoriteArticles.includes(props.url)) {
-    //         setFavorites(true)
-    //     }
-    // }, [])
+    useEffect(() => {
+        if (favoriteArticles.includes(props.url)) {
+            setFavorites(true)
+        }
+    }, [])
     
     return(
     <div className = "col-6 fullCard">
