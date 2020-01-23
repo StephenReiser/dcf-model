@@ -4,8 +4,8 @@ import CompanyNews from '../News/News'
 import firebase from '../../firebase'
 
 const News = () => {
-    const {news, fullData} = useStockContext()
-    const [favoriteNews, setFavoriteNews] = useState(null)
+    const {news, fullData, favoriteNews, setFavoriteNews} = useStockContext()
+    
 
     useEffect(() => {
         let myTickerSymbol = ''
@@ -27,6 +27,7 @@ const News = () => {
                 id: doc.id,
                 ...doc.data()
             })))
+            
 
             // console.log(newTrends)
 
@@ -66,12 +67,12 @@ const News = () => {
     return(
         <div className = "row">
             {news ? news.map(myNews => {
-                let myFavorites = false
-                if (favoriteNews.filter(e => e.url === myNews.url).length > 0) {
-                    myFavorites = true
-                  } else {
-                      myFavorites = false
-                  }
+                // let myFavorites = false
+                // if (favoriteNews.filter(e => e.url === myNews.url).length > 0) {
+                //     myFavorites = true
+                //   } else {
+                //       myFavorites = false
+                //   }
 
 
                 return(
@@ -85,7 +86,7 @@ const News = () => {
                         content = {myNews.content}
                         image = {myNews.urlToImage}
                         date = {myNews.publishedAt}
-                        favorited = {myFavorites}
+                        // favorited = {myFavorites}
                         myKey = {myNews.url}
                     />
                     

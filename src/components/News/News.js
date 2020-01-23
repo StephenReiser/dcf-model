@@ -9,7 +9,7 @@ import firebase from '../../firebase'
 const CompanyNews = (props) => {
     const [favorites, setFavorites] = useState(false)
 
-    const {favoriteArticles} = useStockContext()
+    const {favoriteArticles, searchStock, favoriteNews, setFavoriteNews} = useStockContext()
 
     
 
@@ -21,24 +21,89 @@ const CompanyNews = (props) => {
 
 
     const addFavoriteFunc = () => {
-        setFavorites(!favorites)
-        console.log('added favorite', props.url)
+        // setFavorites(!favorites)
+        
 
-        // really this needs to be a add request to db
+        const newFav = {
+            author: props.author,
+            content: props.content,
+            date: props.date,
+            image: props.image,
+            ticker: searchStock.toUpperCase(),
+            title: props.title,
+            url: props.url
+        }
+        console.log(newFav)
+        firebase.firestore()
+        .collection('stockNews')
+        .add({
+            author: props.author,
+            content: props.content,
+            date: props.date,
+            image: props.image,
+            ticker: searchStock.toUpperCase(),
+            title: props.title,
+            url: props.url
+        })
+        .then((docRef) => {
+            console.log('added a favorite!')
+            newFav.id = docRef.id
+            const newArticles = favoriteNews
+            newArticles.push(newFav)
+            setFavorites(true)
+            setFavoriteNews(newArticles)
+        })
+        
+
+        // so weirdly favoriteNews isn't getting updated as expected (forcing a load) however might not really matter????
+        
+
+        
     }
 
     const removeFavoriteFunc = () => {
-        setFavorites(!favorites)
-        console.log('removed favorite', props.url)
+        // console.log(favoriteNews[favoriteNews.findIndex(x => x.url === props.url)])
+        // setFavorites(!favorites)
+        // console.log('removed favorite', props.url)
+        const myIndex = favoriteNews.findIndex(x => x.url === props.url)
+
+        // console.log(myIndex)
+        const myNewFavorites = favoriteNews
+
+        const idToDelete = myNewFavorites[myIndex].id
+
+        console.log(idToDelete)
+
+        firebase.firestore()
+        .collection("stockNews")
+        .doc(idToDelete)
+        .delete()
+        .then(function() {
+            console.log("Document successfully deleted!");
+            myNewFavorites.splice(myIndex,1)
+            // console.log(myNewFavorites)
+            setFavoriteNews(myNewFavorites)
+            setFavorites(false)
+
+        }).catch(function(error) {
+            console.error("Error removing document: ", error);
+        });
+
+
+        // console.log(favoriteNews)
 
         // really this needs to be a remove request to db - and then set state of myFavorites - so we don't need to do another call
     }
 
     useEffect(() => {
-        if (favoriteArticles.includes(props.url)) {
-            setFavorites(true)
-        }
-    }, [])
+        console.log('favorites isbeing run')
+        
+                if (favoriteNews.filter(e => e.url === props.url).length > 0) {
+                    setFavorites(true)
+                  } else {
+                      setFavorites(false)
+                  }
+    }, [favoriteNews])
     
     return(
     <div className = "col-6 fullCard" key={"msft" + props.myKey}>
@@ -50,7 +115,7 @@ const CompanyNews = (props) => {
             
             <p className="card-text">{props.content} <a href={props.url} target="_blank" rel="noopener noreferrer">read more </a> </p>
             <div className="card-footer myFooter">
-                {props.favorited ? <button className = 'btn-block btn btn-warning' onClick = {() => removeFavoriteFunc()}>Remove from Favorites</button> : <button className = 'btn-block btn btn-success' onClick = {() => addFavoriteFunc()}>Add To Favorites</button>}
+                {favorites ? <button className = 'btn-block btn btn-warning' onClick = {() => removeFavoriteFunc()}>Remove from Favorites</button> : <button className = 'btn-block btn btn-success' onClick = {() => addFavoriteFunc()}>Add To Favorites</button>}
                 
                 </div>
             </div>

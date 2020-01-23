@@ -61,6 +61,9 @@ function App() {
   const [netDebt, setNetDebt] = useState(0)
   const [chartData, setChartData] = useState(null)
   const [news, setNews] = useState(null)
+  const [favoriteNews, setFavoriteNews] = useState(null)
+
+
   const [favoriteArticles, setMyFavoriteArticles] = useState(['https://dagorettinews.com/new-approach-of-internet-of-things-software-market-2019-to-business-applications-with-top-key-players-microsoft-corporation-cisco-systems-inc-sap-se-intel-corporation-general-electronics/','https://www.businessinsider.com/linkedin-ceo-jeff-weiner-open-letter-harassment-2020-1','https://www.businessinsider.com/microsoft-bedlam-card-game-kc-lemson-2020-1'])
 
 
@@ -75,7 +78,7 @@ function App() {
   
   return (
 
-    <StockContext.Provider value ={{searchStock ,setSearchStock, myStock, setMyStock, incomeStatement, setIncomeStatement, balanceSheet, setBalanceSheet, ratios, setRatios, cashFlow, setCashFlow, fullData, setFullData,fiveYearProjection, setFiveYearProjection, growth, setGrowth, ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, tax, setTax, eMultiplier, setEMultiplier, discRate, setDiscRate, shares, setShares, ebitdaAdj, setEbitdaAdj, depAmmAdj, setDepAmmAdj, nwcAdj, setNwcAdj, capExAdj, setCapExAdj, stockPrice, setStockPrice, entValue, setEntValue, netDebt, setNetDebt, chartData, setChartData, news, setNews, favoriteArticles, setMyFavoriteArticles}}>
+    <StockContext.Provider value ={{searchStock ,setSearchStock, myStock, setMyStock, incomeStatement, setIncomeStatement, balanceSheet, setBalanceSheet, ratios, setRatios, cashFlow, setCashFlow, fullData, setFullData,fiveYearProjection, setFiveYearProjection, growth, setGrowth, ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, tax, setTax, eMultiplier, setEMultiplier, discRate, setDiscRate, shares, setShares, ebitdaAdj, setEbitdaAdj, depAmmAdj, setDepAmmAdj, nwcAdj, setNwcAdj, capExAdj, setCapExAdj, stockPrice, setStockPrice, entValue, setEntValue, netDebt, setNetDebt, chartData, setChartData, news, setNews, favoriteArticles, setMyFavoriteArticles, favoriteNews, setFavoriteNews}}>
       
       <div className="container">
         
