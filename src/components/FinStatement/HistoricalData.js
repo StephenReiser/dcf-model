@@ -30,6 +30,7 @@ function HistoricalData () {
 
                     
             {fullData && ( fullData.incomeStatement.map((year, key) => {
+                
                     const date = new Date(year.date).getFullYear()
                     const ebitda = Number(year.EBITDA)/1000000
                     const ebit = Number(year.EBIT)/1000000
@@ -40,7 +41,7 @@ function HistoricalData () {
                     const capEx = Number(fullData.cashFlow[key]["Capital Expenditure"])/1000000
                     const UFCF = ebi+depAmm+nwc+capEx
                 return(
-                    <>
+                    
                     
                 <tr key = {year.date}>
                     <td>
@@ -74,7 +75,7 @@ function HistoricalData () {
                     
                 </tr>
 
-               </>
+               
                
                 )
             })

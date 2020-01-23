@@ -4,15 +4,22 @@ import CompanyNews from '../News/News'
 import firebase from '../../firebase'
 
 const News = () => {
-    const {news} = useStockContext()
+    const {news, fullData} = useStockContext()
     const [favoriteNews, setFavoriteNews] = useState(null)
+
     useEffect(() => {
-        
+        let myTickerSymbol = ''
+        if (fullData) {
+
+            myTickerSymbol = fullData.symbol
+        }
+
+        console.log('firebase updating')
         // need to make sure we set a unsubscribe
         const unsubscribe = firebase
         .firestore()
         .collection('stockNews')
-        // .where("positive", "==", myPositive)
+        .where("ticker", "==", myTickerSymbol)
         // idea here is to then have a filter that allows sort on pos/neg news
         .onSnapshot((snapshot) => {
             
@@ -52,7 +59,8 @@ const News = () => {
         // this forces the component to unsubscribe when it unmounts
     }, [
         // when stock changes need a rerender
-        news, favoriteNews
+        fullData
+        
     ])
 
     return(
@@ -78,6 +86,7 @@ const News = () => {
                         image = {myNews.urlToImage}
                         date = {myNews.publishedAt}
                         favorited = {myFavorites}
+                        myKey = {myNews.url}
                     />
                     
                 )

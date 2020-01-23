@@ -31,7 +31,7 @@ const CompanyNews = (props) => {
         setFavorites(!favorites)
         console.log('removed favorite', props.url)
 
-        // really this needs to be a remove request to db
+        // really this needs to be a remove request to db - and then set state of myFavorites - so we don't need to do another call
     }
 
     useEffect(() => {
@@ -41,7 +41,7 @@ const CompanyNews = (props) => {
     }, [])
     
     return(
-    <div className = "col-6 fullCard">
+    <div className = "col-6 fullCard" key={"msft" + props.myKey}>
         <div className="card h-100 d-flex flex-column justify-content-between" key = {props.url}>
             <img className="card-img-top newsImage" src={props.image} alt={props.title} />
             <div className="card-body newsBody ">
