@@ -2,14 +2,14 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 // Your web app's Firebase configuration
 var firebaseConfig = {
-    apiKey: "AIzaSyDJr9fxNgRwzIsoH58byHYeJO0W8ZYLj1c",
-    authDomain: "steve-stocks-c6112.firebaseapp.com",
-    databaseURL: "https://steve-stocks-c6112.firebaseio.com",
+    apiKey: process.env.REACT_APP_APIKEY,
+    authDomain: process.env.REACT_APP_authDomain,
+    databaseURL: process.env.REACT_APP_databaseURL,
     projectId: "steve-stocks-c6112",
-    storageBucket: "steve-stocks-c6112.appspot.com",
-    messagingSenderId: "789091131320",
-    appId: "1:789091131320:web:f5421ac9a529dc8edcb94d",
-    measurementId: "G-HZPJSYZ0BF"
+    storageBucket: process.env.REACT_APP_storageBucket,
+    messagingSenderId: process.env.REACT_APP_messagingSenderId,
+    appId: process.env.REACT_APP_appId,
+    measurementId: process.env.REACT_APP_measurementId
   };
 
 //   initialize firebase
