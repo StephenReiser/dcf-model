@@ -86,7 +86,7 @@ function App() {
         <div className = 'col-9'>
           <GrowthInputs />
         </div>
-        <div className = 'col-3'>
+        <div className = 'col-3 valuationParentBox'>
           <Valuation />
         </div>
       </div>

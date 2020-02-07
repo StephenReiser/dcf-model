@@ -4,11 +4,11 @@ import React from 'react'
 const ValuationComponent = (props) => {
 
     return(
-        <div className = 'row'>
-            <div className = 'col-8'>
+        <div className = {`row ${props.myStyle || "valuationRow"}`}>
+            <div className = 'col-6 '>
                 {props.description}
             </div>
-            <div className = 'col-4'>
+            <div className = 'col-6 alignRight'>
                 {props.myValue}
             </div>
 

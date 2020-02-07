@@ -24,7 +24,7 @@ function Valuation () {
     },[fiveYearProjection])
 
     return (
-        <>
+        <div className = 'valuationContainer'>
         
         <ValuationComponent 
             description = {`My DCF: `}
@@ -53,15 +53,16 @@ function Valuation () {
         />
 
         <ValuationComponent 
+            myStyle = {`summaryLine`}
             description = {`Equity Value: `}
             myValue = {Number(((myDCF + terminalDCF - netDebt/1000000) / (myShares)).toFixed(2)).toLocaleString()}
         />
         <ValuationComponent 
             description = {`Current Price: `}
-            myValue = {stockPrice}
+            myValue = {Number(stockPrice).toFixed(2).toLocaleString()}
         />
        
-        </>
+        </div>
 
     )
 }

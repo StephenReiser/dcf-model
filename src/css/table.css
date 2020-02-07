@@ -1,4 +1,10 @@
-
+:root {
+    --primary-color-one: #CAE4DB;
+    --primary-color-two: #DCAE1D;
+    --primary-color-three: #00303F;
+    --primary-color-four: #7A9D96;
+    --primary-color-five: #FEFFFF;
+}
 
 
 /* So either do this?? */
@@ -14,7 +20,7 @@ th, td {
 
 
 th, td {
-    color: red
+    /* color: red */
 }
 
 
@@ -56,4 +62,38 @@ th, td {
 .newAndFavorites {
     height: 700px;
     overflow: scroll
+}
+
+
+/* overall color settings */
+/* 
+body {
+    background-color: var(--primary-color-one);
+    color: var(--primary-color-three);
+} */
+
+
+/* Styling the valuations */
+
+.valuationParentBox, .valuationRow, .summaryLine {
+    padding: 0px;
+    margin: 0px;
+
+}
+.valuationContainer {
+    background-color: var(--primary-color-four);
+    color: var(--primary-color-three)
+}
+
+
+.alignRight {
+    text-align: right;
+}
+
+.summaryLine{
+    background-color: var(--primary-color-three);
+    color: var(--primary-color-one);
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    font-weight: 700;
 }
