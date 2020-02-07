@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import {useStockContext} from '../../context'
 import CompanyNews from '../News/News'
 import firebase from '../../firebase'
 
 const News = () => {
-    const {news, fullData, favoriteNews, setFavoriteNews} = useStockContext()
+    const {news, fullData, setFavoriteNews} = useStockContext()
     
 
     useEffect(() => {
@@ -64,8 +64,12 @@ const News = () => {
         
     ])
 
+    // I dont think i want fullData here - but right now I need it to make the buttons work correctly
+
+    // I think i only want to run this once-  react is mad because it is and not running when favoriteNews is updated - but by passing in favorite news in the array - this is making an infinite loop
+
     return(
-        <div className = "row">
+        <div className = "row newAndFavorites">
             {news ? news.map(myNews => {
                 // let myFavorites = false
                 // if (favoriteNews.filter(e => e.url === myNews.url).length > 0) {
@@ -88,6 +92,7 @@ const News = () => {
                         date = {myNews.publishedAt}
                         // favorited = {myFavorites}
                         myKey = {myNews.url}
+                        key = {myNews.url}
                     />
                     
                 )

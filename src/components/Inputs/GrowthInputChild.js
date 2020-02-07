@@ -1,4 +1,5 @@
 import React from 'react';
+import InputField from './InputField'
 // import {useStockContext} from '../../context'
 
 function GrowthInputChild (props) {
@@ -15,20 +16,17 @@ function GrowthInputChild (props) {
             <div className = 'col-1'>{props.fiveYearValue}</div>
             <div className = 'col-1'>{props.value}</div>
             <div className = 'col-1'>{props.oneYear}</div>
-            <div className = 'col-1'>
-            <input 
-                    type="number" 
-                    value = {props.adj}
-                    onChange = {e => props.adjFunc(e.target.value)}
-                />
-                </div>
-            <div className = 'col-1'>
-            <input 
-                    type="number" 
-                    value = {props.input}
-                    onChange = {e => props.inputFunc(e.target.value)}
-                />
-                </div>
+            <InputField 
+                myType = {"number"}
+                myValue = {props.adj}
+                myHandleChange = {props.adjFunc}
+            />
+            <InputField 
+                myType = {"number"}
+                myValue = {props.input}
+                myHandleChange = {props.inputFunc}
+            />
+            
             <div className = 'col-3'></div>
           </div>
     )

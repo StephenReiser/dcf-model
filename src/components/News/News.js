@@ -9,7 +9,7 @@ import firebase from '../../firebase'
 const CompanyNews = (props) => {
     const [favorites, setFavorites] = useState(false)
 
-    const {favoriteArticles, searchStock, favoriteNews, setFavoriteNews} = useStockContext()
+    const {searchStock, favoriteNews, setFavoriteNews} = useStockContext()
 
     
 
@@ -90,13 +90,11 @@ const CompanyNews = (props) => {
         });
 
 
-        // console.log(favoriteNews)
-
-        // really this needs to be a remove request to db - and then set state of myFavorites - so we don't need to do another call
+        
     }
 
     useEffect(() => {
-        console.log('favorites isbeing run')
+        console.log('favorites is being run')
         
                 if (favoriteNews.filter(e => e.url === props.url).length > 0) {
                     setFavorites(true)
@@ -104,6 +102,8 @@ const CompanyNews = (props) => {
                       setFavorites(false)
                   }
     }, [favoriteNews])
+
+    // i think this is fixed to stop rerendering on ALL cards - nope now its not running - being stupid - if its props it works but is running 100 times on each change. if its props.url it is only running once, but not updating as I'd expect it to. Adding stuff to db and all but not setting favorites here for me (changing color) - will need to revisit - this is running twice if its set to favoriteNews... why???? - so this is forcing an fetch from firebase - we dont need to do this - really need to think how and why things are updating
     
     return(
     <div className = "col-6 fullCard" key={"msft" + props.myKey}>

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import {useStockContext} from '../../context'
-
+import ValuationComponent from './ValuationComponent'
 
 function Valuation () {
 
@@ -21,36 +21,46 @@ function Valuation () {
         console.log('valuation ran')
         // }
         
-    },[fiveYearProjection, fullData])
+    },[fiveYearProjection])
 
     return (
         <>
-        <div className = 'row'>
-            My DCF: {Number(myDCF.toFixed(0)).toLocaleString()}
-            
-        </div>
-        <div className='row'    >
-            Terminal DCF: {Number(terminalDCF.toFixed(0)).toLocaleString()}
-            
-        </div>
-        <div className = 'row'>
-            Total Value: {Number((myDCF + terminalDCF).toFixed(0)).toLocaleString()}
-        </div>
-        {/* <div className = 'row'>
-            Shares Outstanding: {shares ? Number((shares/1000000 ).toFixed(0)).toLocaleString() : 0}
-        </div> */}
-        <div className = 'row'>
-            Diluted Shares Outstanding: {shares ? Number(myShares.toFixed(0)).toLocaleString() : 0}
-        </div>
-        <div className = 'row'>
-            Net Debt: {Number((netDebt/1000000).toFixed(0)).toLocaleString()}
-        </div>
-        <div className = 'row'>
-            Equity Value: { Number(((myDCF + terminalDCF - netDebt/1000000) / (myShares)).toFixed(2)).toLocaleString()}
-        </div>
-        <div className = 'row'>
-            Current Stock Price: {stockPrice}
-        </div>
+        
+        <ValuationComponent 
+            description = {`My DCF: `}
+            myValue = {Number(myDCF.toFixed(0)).toLocaleString()}
+        />
+        <ValuationComponent 
+            description = {`Terminal DCF: `}
+            myValue = {Number(terminalDCF.toFixed(0)).toLocaleString()}
+        />
+        <ValuationComponent 
+            description = {`Total Value: `}
+            myValue = {Number((myDCF + terminalDCF).toFixed(0)).toLocaleString()}
+        />
+        <ValuationComponent 
+            description = {`Total Value: `}
+            myValue = {Number((myDCF + terminalDCF).toFixed(0)).toLocaleString()}
+        />
+        <ValuationComponent 
+        // diluted shares outstanding
+            description = {`Shares Out: `}
+            myValue = {shares ? Number(myShares.toFixed(0)).toLocaleString() : 0}
+        />
+        <ValuationComponent 
+            description = {`Net Debt: `}
+            myValue = {Number((netDebt/1000000).toFixed(0)).toLocaleString()}
+        />
+
+        <ValuationComponent 
+            description = {`Equity Value: `}
+            myValue = {Number(((myDCF + terminalDCF - netDebt/1000000) / (myShares)).toFixed(2)).toLocaleString()}
+        />
+        <ValuationComponent 
+            description = {`Current Price: `}
+            myValue = {stockPrice}
+        />
+       
         </>
 
     )

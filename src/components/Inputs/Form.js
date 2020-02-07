@@ -69,7 +69,10 @@ function Form () {
              let nwcArray = []
 
             data2.financials.map((year, key) => {
+                
                 // we do get an error here - it wants us to be returning something - 
+
+                
                 if(key < data2.financials.length - 1) {
                     const yearOneNWC = year["Total current assets"] - year["Total current liabilities"]
 
@@ -79,7 +82,7 @@ function Form () {
 
                 }
             })
-
+            console.log(nwcArray)
             let nwcRateArray = []
             
             for (let i = 1; i<= 5; i++) {
@@ -87,6 +90,7 @@ function Form () {
                     nwcRateArray.push(0)
                 } else {
                     nwcRateArray.push((nwcArray[i-1] - nwcArray[i]) / nwcArray[i])
+                    
 
                 }
                 

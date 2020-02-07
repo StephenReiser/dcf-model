@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react';
 import {useStockContext} from '../../context'
 import GrowthInputChild from './GrowthInputChild'
+import CustomInputs from './CustomInputs'
 import '../../css/firstTable.css'
 
 
 function GrowthInputs () {
 
-    const { ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, setGrowth, fullData, tax, setTax, growth, eMultiplier, setEMultiplier, ebitdaAdj, setEbitdaAdj, depAmmAdj, setDepAmmAdj, nwcAdj, setNwcAdj, capExAdj, setCapExAdj, discRate, setDiscRate, entValue } = useStockContext()
+    const { ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, fullData, tax, setTax, growth, eMultiplier, setEMultiplier, ebitdaAdj, setEbitdaAdj, depAmmAdj, setDepAmmAdj, nwcAdj, setNwcAdj, capExAdj, setCapExAdj, discRate, setDiscRate, entValue } = useStockContext()
 
     const setNewGrowths = (e) => {
         e.preventDefault()
@@ -28,17 +29,17 @@ function GrowthInputs () {
     }, [growth])
     // I think what would be good here is when we submit a new stock - this stuff runs resetting defaults or pulling in a baseline number - right now anythign you change stays for the next ones
 
-    const myBaselineFunction = (inputData) => {
-        // console.log('hello')
-        // setGrowth({
-        //     ebitdaGrowth: .05,
-        //     depAmmGrowth: .05,
-        //     nwcGrowth: -.10,
-        //     capExGrowth: .045,
-        //     tax: .24
-        //     }
-        // )
-    }
+    // const myBaselineFunction = (inputData) => {
+    //     // console.log('hello')
+    //     // setGrowth({
+    //     //     ebitdaGrowth: .05,
+    //     //     depAmmGrowth: .05,
+    //     //     nwcGrowth: -.10,
+    //     //     capExGrowth: .045,
+    //     //     tax: .24
+    //     //     }
+    //     // )
+    // }
 
     return(
         <form onSubmit = {setNewGrowths}>
@@ -52,57 +53,77 @@ function GrowthInputs () {
             <div className = 'col-3'></div>
 
         </div>
-        <GrowthInputChild name = {'EBITDA'} fiveYearValue = {growth.fiveYear.ebitdaGrowth} value = {growth.threeYear.ebitdaGrowth} adj = {ebitdaAdj} adjFunc = {(e) => setEbitdaAdj(e)} input = {ebitda} oneYear  = {growth.oneYear.ebitdaGrowth} inputFunc = {(e) =>setEbitda(e)}/>
-        <GrowthInputChild name = {'D&A'} fiveYearValue = {growth.fiveYear.depAmmGrowth} value = {growth.threeYear.depAmmGrowth} adj = {depAmmAdj} adjFunc = {(e) => setDepAmmAdj(e)} oneYear  = {growth.oneYear.depAmmGrowth} input = {depAmm} inputFunc = {(e) =>setDepAmm(e)}/>
-        <GrowthInputChild name = {'CapEx'} fiveYearValue = {growth.fiveYear.capExGrowth} value = {growth.threeYear.capExGrowth} adj = {capExAdj} adjFunc = {(e) => setCapExAdj(e)} oneYear  = {growth.oneYear.capExGrowth} input = {capEx} inputFunc = {(e) =>setCapEx(e)}/>
-        <GrowthInputChild name = {'NWC'} fiveYearValue = {growth.fiveYear.nwcGrowth} value = {growth.threeYear.nwcGrowth} oneYear  = {growth.oneYear.nwcGrowth} adj = {nwcAdj} adjFunc = {(e) => setNwcAdj(e)} input = {nwc} inputFunc = {(e) =>setNwc(e)}/>
-        
-        <div className = 'row'>
-          <div className = 'col-4'>Tax</div>
-          <div className = 'col-1'>{growth.fiveYear.tax}</div>
-          <div className = 'col-1'>{growth.threeYear.tax}</div>
-          <div className = 'col-1'>{growth.oneYear.tax}</div>
-          <div className = 'col-1'></div>
-          <div className = 'col-1'>
-          <input 
-                type="number" 
-                value = {tax}
-                onChange = {e => setTax(e.target.value)}
-            />
-            </div>
-          <div className = 'col-3'></div>
-        </div>
-        <div className = 'row'>
-          <div className = 'col-4'>Terminal Earnings Multiplier</div>
-          <div className = 'col-2'>{entValue}</div>
-          <div className = 'col-1'></div>
-          <div className = 'col-1'></div>
-          <div className = 'col-1'>
-          <input 
-                type="number" 
-                value = {eMultiplier}
-                onChange = {e => setEMultiplier(e.target.value)}
-            />
-            </div>
-          <div className = 'col-3'></div>
-        </div>
-        <div className = 'row'>
-          <div className = 'col-4'>Discount Rate</div>
-          <div className = 'col-2'>{discRate}</div>
-          <div className = 'col-1'></div>
-          <div className = 'col-1'></div>
-          <div className = 'col-1'>
-          <input 
-                type="number" 
-                value = {discRate}
-                onChange = {e => setDiscRate(e.target.value)}
-            />
-            </div>
-          <div className = 'col-3'></div>
-        </div>
-        <label>
+        <GrowthInputChild 
+          name = {'EBITDA'} 
+          fiveYearValue = {growth.fiveYear.ebitdaGrowth} 
+          value = {growth.threeYear.ebitdaGrowth} 
+          adj = {ebitdaAdj} 
+          adjFunc = {setEbitdaAdj} 
+          input = {ebitda} 
+          oneYear  = {growth.oneYear.ebitdaGrowth} 
+          inputFunc = {setEbitda}
+          />
+        <GrowthInputChild 
+          name = {'D&A'} 
+          fiveYearValue = {growth.fiveYear.depAmmGrowth} 
+          value = {growth.threeYear.depAmmGrowth} 
+          adj = {depAmmAdj} 
+          adjFunc = {setDepAmmAdj} 
+          oneYear  = {growth.oneYear.depAmmGrowth} 
+          input = {depAmm} 
+          inputFunc = {setDepAmm}
+          />
+        <GrowthInputChild 
+          name = {'CapEx'} 
+          fiveYearValue = {growth.fiveYear.capExGrowth} 
+          value = {growth.threeYear.capExGrowth} 
+          adj = {capExAdj} 
+          adjFunc = {setCapExAdj} 
+          oneYear  = {growth.oneYear.capExGrowth} 
+          input = {capEx} 
+          inputFunc = {setCapEx}
+          />
+        <GrowthInputChild 
+          name = {'NWC'} 
+          fiveYearValue = {growth.fiveYear.nwcGrowth} 
+          value = {growth.threeYear.nwcGrowth} 
+          oneYear  = {growth.oneYear.nwcGrowth} 
+          adj = {nwcAdj} 
+          adjFunc = {setNwcAdj} 
+          input = {nwc} 
+          inputFunc = {setNwc}
+          />
+        <CustomInputs 
+          description = {'Tax'}
+          fiveYear = {growth.fiveYear.tax}
+          threeYear = {growth.threeYear.tax}
+          oneYear = {growth.oneYear.tax}
+          inputType = {"number"}
+          inputValue = {tax}
+          inputFunc = {setTax}
+          />
+        <CustomInputs 
+          description = {'Terminal Earnings Multiplier'}
+          fiveYear = {entValue}
+          threeYear = {''}
+          oneYear = {''}
+          inputType = {"number"}
+          inputValue = {eMultiplier}
+          inputFunc = {setEMultiplier}
+          />
+        <CustomInputs 
+          description = {'Discount Rate'}
+          fiveYear = {discRate}
+          threeYear = {''}
+          oneYear = {''}
+          inputType = {"number"}
+          inputValue = {discRate}
+          inputFunc = {setDiscRate}
+          />
+          
+        {/* <label>
              <input type='submit' value='submit' />
-        </label>
+        </label> */}
       </form>
     //     <form onSubmit = {setNewGrowths}>
     //     <GrowthInputChild name={'EBITDA'} value = {ebitda} setFunc = {setEbitda}/>
@@ -126,82 +147,3 @@ export default GrowthInputs
 // Some where we ened to reset the growth form
 
 
-
-// pretty sure the components above work
-
-{/* <div className = 'row'>
-          <div className = 'col-5'>EBITDA</div>
-          <div className = 'col-2'>{growth.ebitdaGrowth}</div>
-          <div className = 'col-1'>
-          <input 
-                type="number" 
-                value = {ebitdaAdj}
-                onChange = {e => setEbitdaAdj(e.target.value)}
-            />
-            </div>
-          <div className = 'col-1'>
-          <input 
-                type="number" 
-                value = {ebitda}
-                onChange = {e => setEbitda(e.target.value)}
-            />
-            </div>
-          <div className = 'col-3'></div>
-        </div> */}
-        {/* <div className = 'row'>
-          <div className = 'col-5'>D&A</div>
-          <div className = 'col-2'>{growth.depAmmGrowth}</div>
-          <div className = 'col-1'>
-          <input 
-                type="number" 
-                value = {depAmmAdj}
-                onChange = {e => setDepAmmAdj(e.target.value)}
-            />
-            </div>
-          <div className = 'col-1'>
-          <input 
-                type="number" 
-                value = {depAmm}
-                onChange = {e => setDepAmm(e.target.value)}
-            />
-            </div>
-          <div className = 'col-3'></div>
-        </div> */}
-        {/* <div className = 'row'>
-          <div className = 'col-5'>CapEx</div>
-          <div className = 'col-2'>{growth.capExGrowth}</div>
-          <div className='col-1'>
-          <input 
-                type="number" 
-                value = {capExAdj}
-                onChange = {e => setCapExAdj(e.target.value)}
-            />
-            </div>
-          <div className='col-1'>
-          <input 
-                type="number" 
-                value = {capEx}
-                onChange = {e => setCapEx(e.target.value)}
-            />
-            </div>
-          <div className = 'col-3'></div>
-        </div> */}
-        {/* <div className = 'row'>
-          <div className = 'col-5'>NWC</div>
-          <div className = 'col-2'>{growth.nwcGrowth}</div>
-          <div className='col-1'>
-          <input 
-                type="number" 
-                value = {nwcAdj}
-                onChange = {e => setNwcAdj(e.target.value)}
-            />
-            </div>
-          <div className='col-1'>
-          <input 
-                type="number" 
-                value = {nwc}
-                onChange = {e => setNwc(e.target.value)}
-            />
-            </div>
-          <div className = 'col-3'></div>
-        </div> */}
