@@ -38,10 +38,12 @@ function Valuation () {
             description = {`Total Value: `}
             myValue = {Number((myDCF + terminalDCF).toFixed(0)).toLocaleString()}
         />
-        <ValuationComponent 
+        {/* <ValuationComponent 
             description = {`Total Value: `}
             myValue = {Number((myDCF + terminalDCF).toFixed(0)).toLocaleString()}
-        />
+        /> */}
+
+        {/* this was a dupe - am I missing something here???? */}
         <ValuationComponent 
         // diluted shares outstanding
             description = {`Shares Out: `}

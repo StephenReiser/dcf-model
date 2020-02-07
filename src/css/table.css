@@ -19,9 +19,6 @@ th, td {
 /* or this: The trick is to use display: inline-block; on the table rows and  white-space: nowrap; on the table body. */
 
 
-th, td {
-    /* color: red */
-}
 
 
 /* this is getting loaded everywhere so just plopping stuff here for now */
@@ -96,4 +93,19 @@ body {
     border-top: 2px solid black;
     border-bottom: 2px solid black;
     font-weight: 700;
+}
+
+.btn-success {
+    background-color:var(--primary-color-three);
+    border-color: var(--primary-color-three);
+}
+
+.btn-success:active, .btn-success:hover, .btn-success:focus, .btn-success:not(:disabled):not(.disabled).active, .btn-success:not(:disabled):not(.disabled):active {
+    background-color:var(--primary-color-four);
+    border-color: var(--primary-color-four);
+}
+
+.btn-warning {
+    background-color:var(--primary-color-two);
+    border-color: var(--primary-color-two);
 }
