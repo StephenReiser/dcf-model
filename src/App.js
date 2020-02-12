@@ -6,7 +6,7 @@ import {StockContext} from './context'
 import TabHome from './components/Tabs/TabHome'
 import GrowthInputs from './components/Inputs/GrowthInputs'
 import Valuation from './components/FinStatement/Valuation'
-
+import NavBar from './components/Nav'
 
 
 
@@ -80,13 +80,16 @@ function App() {
 
     <StockContext.Provider value ={{searchStock ,setSearchStock, myStock, setMyStock, incomeStatement, setIncomeStatement, balanceSheet, setBalanceSheet, ratios, setRatios, cashFlow, setCashFlow, fullData, setFullData,fiveYearProjection, setFiveYearProjection, growth, setGrowth, ebitda, setEbitda, depAmm, setDepAmm, capEx, setCapEx, nwc, setNwc, tax, setTax, eMultiplier, setEMultiplier, discRate, setDiscRate, shares, setShares, ebitdaAdj, setEbitdaAdj, depAmmAdj, setDepAmmAdj, nwcAdj, setNwcAdj, capExAdj, setCapExAdj, stockPrice, setStockPrice, entValue, setEntValue, netDebt, setNetDebt, chartData, setChartData, news, setNews, favoriteArticles, setMyFavoriteArticles, favoriteNews, setFavoriteNews}}>
       
+    <NavBar />
+    
+
       <div className="container">
         
       <div className = 'row'>
-        <div className = 'col-9'>
+        <div className = 'col-md-9'>
           <GrowthInputs />
         </div>
-        <div className = 'col-3 valuationParentBox'>
+        <div className = 'col-md-3 valuationParentBox'>
           <Valuation />
         </div>
       </div>

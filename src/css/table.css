@@ -109,3 +109,37 @@ body {
     background-color:var(--primary-color-two);
     border-color: var(--primary-color-two);
 }
+
+
+.myNav {
+    background-color: var(--primary-color-three) !important;
+    margin-bottom: 10px;
+}
+
+.myNav > a {
+
+    color: var(--primary-color-five) !important
+}
+
+
+/* overriding some of the bootstrap buttons to make header button */
+.nav-button {
+    /* background-color: var(--primary-color-one) !important; */
+    color: var(--primary-color-one) !important;
+    border-color: var(--primary-color-one) !important;
+}
+
+.nav-button:hover {
+    background-color: var(--primary-color-one) !important;
+    color: var(--primary-color-three) !important;
+}
+
+.nav-button:not(:disabled):not(.disabled).active, .nav-button:not(:disabled):not(.disabled):active, .show>.nav-button.dropdown-toggle  {
+
+    background-color: var(--primary-color-one) !important;
+    color: var(--primary-color-three) !important;
+}
+
+.nav-button:focus {
+    box-shadow: var(--primary-color-one) !important;
+}

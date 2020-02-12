@@ -18,9 +18,10 @@ function BalanceSheet () {
 
     return(
         
-        <>
+        
 
-        <button onClick = {() => testButton()}>Console Log</button>
+        
+        
         <table>
             <thead>
             <tr>
@@ -44,11 +45,11 @@ function BalanceSheet () {
         </table>
 
 
-{/* So this is never going to work - biggest issue is how to add up data - seems better to make a year a component and somehow we need to iterate or combine all of my info - perhaps when we set state we combine years and have 1 master record?? So I know have a fullData object*/}
+// {/* So this is never going to work - biggest issue is how to add up data - seems better to make a year a component and somehow we need to iterate or combine all of my info - perhaps when we set state we combine years and have 1 master record?? So I know have a fullData object*/}
             
 
 
-        </>
+        
     )
 
 }
