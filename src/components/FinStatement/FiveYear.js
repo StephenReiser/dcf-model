@@ -99,7 +99,7 @@ function FiveYear () {
         {fiveYearProjection && (fiveYearProjection.map((year, key) => {
             return(
                 <tr key = {`${key}${year.ebitda}`}>
-                    <td>{year.date}</td>
+                    <td className = 'tableDate'>{year.date}</td>
                     <td>{Math.floor(year.ebitda).toLocaleString()}</td>
                     <td>{Math.floor(year.ebit).toLocaleString()}</td>
                     <td>

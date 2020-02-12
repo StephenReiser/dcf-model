@@ -15,6 +15,9 @@ th, td {
     padding: 10px;
  }
 
+ body {
+     color: var(--primary-color-three)
+ }
 
 /* or this: The trick is to use display: inline-block; on the table rows and  white-space: nowrap; on the table body. */
 
@@ -148,4 +151,25 @@ body {
 
 .colHeader {
     font-weight: 800;
+}
+
+.fixHeaderBorder {
+    border-bottom: 1px solid var(--primary-color-three);
+}
+
+.inputRightBorder {
+    border-right: 1px solid var(--primary-color-three);
+}
+
+.inputLeftBorder {
+    border-left: 1px solid var(--primary-color-three)
+}
+
+.inputBottomBorder {
+    border-bottom: 1px solid var(--primary-color-three);
+    margin-bottom: 15px;
+}
+
+.tableDate {
+    font-weight: bold;
 }

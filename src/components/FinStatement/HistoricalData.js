@@ -44,7 +44,7 @@ function HistoricalData () {
                     
                     
                 <tr key = {year.date}>
-                    <td>
+                    <td className = 'tableDate'>
                         {date}
                     </td>
                     <td>

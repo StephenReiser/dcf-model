@@ -44,10 +44,10 @@ function GrowthInputs () {
     return(
         <form onSubmit = {setNewGrowths}>
         <div className = 'row'>
-            <div className = 'col-4 colHeader'>Name</div>
-            <div className = 'col-1 colHeader'>5yr Avg</div>
-            <div className = 'col-1 colHeader'>3yr Avg</div>
-            <div className = 'col-1 colHeader'>1yr Avg</div>
+            <div className = 'col-4 colHeader fixHeaderBorder'>Name</div>
+            <div className = 'col-1 colHeader fixHeaderBorder'>5yr Avg</div>
+            <div className = 'col-1 colHeader fixHeaderBorder'>3yr Avg</div>
+            <div className = 'col-1 colHeader fixHeaderBorder'>1yr Avg</div>
             <div className = 'col-1 colHeader'>Manual Adj</div>
             <div className = 'col-1 colHeader'>Custom</div>
             <div className = 'col-3 colHeader'></div>
@@ -119,6 +119,7 @@ function GrowthInputs () {
           inputType = {"number"}
           inputValue = {discRate}
           inputFunc = {setDiscRate}
+          myClass = {`inputBottomBorder`}
           />
           
         {/* <label>
