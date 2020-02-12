@@ -7,7 +7,7 @@ const CustomInput = (props) => {
 
     return(
         <div className='row'>
-                <div className = 'col-4'>{props.description}</div>
+                <div className = 'col-4 colHeader'>{props.description}</div>
                 <div className = 'col-1'>{props.fiveYear}</div>
                 <div className = 'col-1'>{props.threeYear}</div>
                 <div className = 'col-1'>{props.oneYear}</div>

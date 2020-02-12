@@ -8,8 +8,8 @@ const Nav = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-                
-        console.log(searchStock)
+        
+        // console.log(searchStock)
         // search.setSearchStock('')
         Promise.all([
             fetch(`https://financialmodelingprep.com/api/v3/financials/income-statement/${searchStock}`),
@@ -258,12 +258,12 @@ const Nav = () => {
       }
 
     return(
-        <nav class="navbar navbar-light bg-light justify-content-between sticky-top myNav">
-        <a class="navbar-brand">Steve's DCF Calculator</a>
-        <form class="form-inline" onSubmit = {handleSubmit}>
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" value = {searchStock}
+        <nav className="navbar navbar-light bg-light justify-content-between sticky-top myNav">
+        <a className="navbar-brand">Steve's DCF Calculator</a>
+        <form className="form-inline" onSubmit = {handleSubmit}>
+          <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" value = {searchStock}
                     onChange = {e => setSearchStock(e.target.value)}/>
-          <button class="btn btn-outline-success my-2 my-sm-0 nav-button" type="submit">Search</button>
+          <button className="btn btn-outline-success my-2 my-sm-0 nav-button" type="submit">Search</button>
         </form>
       </nav>
 )

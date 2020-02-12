@@ -143,3 +143,9 @@ body {
 .nav-button:focus {
     box-shadow: var(--primary-color-one) !important;
 }
+
+/* bolding custom input headers */
+
+.colHeader {
+    font-weight: 800;
+}

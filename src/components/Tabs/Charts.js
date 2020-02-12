@@ -75,29 +75,29 @@ const ChartTab = () => {
     }, [chartData])
 
 
-      function testFunc(someDataSet) {
+//       function testFunc(someDataSet) {
 
-          const myChartData = someDataSet.historical.map(price => {
-            return price.close
-          })
-          const myChartDates = someDataSet.historical.map(price => {
-            return price.date
-          })
+//           const myChartData = someDataSet.historical.map(price => {
+//             return price.close
+//           })
+//           const myChartDates = someDataSet.historical.map(price => {
+//             return price.date
+//           })
 
-          console.log(myChartData)
-          console.log(myChartDates)
-//         var shareholders = ['name1', 'name2', 'name3'];
-// var users=new Array();
-// shareholders.forEach(function(item,i){
-//   users[i]=item;
-// });
-// console.log(users);
-      }
+//           console.log(myChartData)
+//           console.log(myChartDates)
+// //         var shareholders = ['name1', 'name2', 'name3'];
+// // var users=new Array();
+// // shareholders.forEach(function(item,i){
+// //   users[i]=item;
+// // });
+// // console.log(users);
+//       }
     
 
     return (
         <>
-            <button onClick = {() => testFunc(chartData)}> Test Button</button>
+            {/* <button onClick = {() => testFunc(chartData)}> Test Button</button> */}
             <div style={styles.graphContainer}>
                 <LineChart data={myChartData}
                 options={options}

@@ -44,13 +44,13 @@ function GrowthInputs () {
     return(
         <form onSubmit = {setNewGrowths}>
         <div className = 'row'>
-            <div className = 'col-4'>Name</div>
-            <div className = 'col-1'>5yr Avg</div>
-            <div className = 'col-1'>3yr Avg</div>
-            <div className = 'col-1'>1yr Avg</div>
-            <div className = 'col-1'>Manual Adj</div>
-            <div className = 'col-1'>Custom</div>
-            <div className = 'col-3'></div>
+            <div className = 'col-4 colHeader'>Name</div>
+            <div className = 'col-1 colHeader'>5yr Avg</div>
+            <div className = 'col-1 colHeader'>3yr Avg</div>
+            <div className = 'col-1 colHeader'>1yr Avg</div>
+            <div className = 'col-1 colHeader'>Manual Adj</div>
+            <div className = 'col-1 colHeader'>Custom</div>
+            <div className = 'col-3 colHeader'></div>
 
         </div>
         <GrowthInputChild 
@@ -103,7 +103,7 @@ function GrowthInputs () {
           inputFunc = {setTax}
           />
         <CustomInputs 
-          description = {'Terminal Earnings Multiplier'}
+          description = {'Terminal Earnings Mult'}
           fiveYear = {entValue}
           threeYear = {''}
           oneYear = {''}

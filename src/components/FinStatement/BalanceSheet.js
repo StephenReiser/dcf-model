@@ -8,12 +8,6 @@ function BalanceSheet () {
 
     const {fullData} = useStockContext()
 
-    function testButton () {
-        
-        console.log(fullData)
-        
-    }
-
 
 
     return(
